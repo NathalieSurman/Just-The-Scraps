@@ -2,10 +2,17 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 
-const port = 8000;
+const PORT = 8000;
 //--- This is the endpoint for all the fabrics and to get one of the fabric item------//
-
 const { getAllFabrics, getFabric } = require("./handlers/fabrics");
+//--- -==========================================================================------//
+
+//--- This is the endpoint to get all the fabrics caetegorie and by its id ------//
+const {
+  getFabricCategories,
+  getFabricCategoriesById,
+} = require("./handlers/categories");
+//--- -==========================================================================------//
 
 express()
   .use(express.json())
@@ -15,10 +22,17 @@ express()
   .get("/hello", (req, res) => {
     res.status(200).json({ status: 200, message: "Hello There" });
   })
+
+  //#### Endpoints####/
+
   //---endpoints for the all the fabrics and one fabric ---//
   .get("/fabric", getAllFabrics)
-  .get("/fabric/:id")
+  .get("/fabric/:_id", getFabric)
 
-  .listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+  //----- this is the endpoint for the fabric categories ----/
+  .get("/categories", getFabricCategories)
+  .get("/categories/:category", getFabricCategoriesById)
+
+  .listen(PORT, () => {
+    console.log(`listening on PORT ${PORT}`);
   });

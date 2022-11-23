@@ -1,4 +1,4 @@
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 const { v4: uuidv4 } = require("uuid");
@@ -18,6 +18,7 @@ const getAllFabrics = async (req, res) => {
     const dbName = "justfabrics";
     //connect to the database in the mongodb
     const db = client.db(dbName);
+
     //----- We want to find array in the collection "fabric"-----//
     const allFabrics = await db.collection("fabric").find().toArray();
 
@@ -34,14 +35,14 @@ const getAllFabrics = async (req, res) => {
 //-----function to GET a one of the fabric --------//
 
 const getFabric = async (req, res) => {
-  const id = Number(req.params.id);
+  const _id = Number(req.params._id);
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   try {
     const dbName = "justfabrics";
     const db = client.db(dbName);
     //----- find one object in the collection "fabric"-----//
-    const fabric = await db.collection("fabric").findOne({ id: id });
+    const fabric = await db.collection("fabric").findOne({ _id: _id });
     if (!fabric) {
       res.status(404).json({ status: 404, message: "invalid search" });
     } else {
