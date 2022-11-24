@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TfiSearch } from "react-icons/tfi";
 import { SlBag } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,6 +12,7 @@ const Header = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input />
+
             <TfiSearch style={{ color: "grey", fontSize: 16 }} />
           </SearchContainer>
         </Left>
@@ -19,9 +21,11 @@ const Header = () => {
         </Center>
         <Right>
           <h2>LOGOUT</h2>
-          <CartIcon>
+          <StyledLink to="/fabric">Fabrics</StyledLink>
+
+          <CartIconLink to="/cart">
             <SlBag />
-          </CartIcon>
+          </CartIconLink>
         </Right>
       </Wrapper>
     </Container>
@@ -78,8 +82,10 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
-const CartIcon = styled.div`
+const CartIconLink = styled(Link)`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
 `;
+
+const StyledLink = styled(Link)``;

@@ -2,85 +2,85 @@
   {
     "_id": 1,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/001.jpg",
+    "imageSrc": "./image/001.jpg",
     "numInStock": 5
   },
   {
     "_id": 2,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/002.jpg",
+    "imageSrc": "./image/002.jpg",
     "numInStock": 0
   },
   {
     "_id": 3,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/003.jpg",
+    "imageSrc": "./image/003.jpg",
     "numInStock": 3
   },
   {
     "_id": 4,
     "category": "mix fibers",
-    "imageSrc": "/client/Image/004.jpg",
+    "imageSrc": "./image/004.jpg",
     "numInStock": 2
   },
   {
     "_id": 5,
     "category": "mix fibers",
-    "imageSrc": "/client/Image/009.jpg",
+    "imageSrc": "/image/009.jpg",
     "numInStock": 0
   },
   {
     "_id": 6,
     "category": "mix fibers",
-    "imageSrc": "/client/Image/0014.jpg",
+    "imageSrc": "./image/0014.jpg",
     "numInStock": 4
   },
   {
     "_id": 7,
     "category": "mix fibers",
-    "imageSrc": "/client/Image/0024.jpg",
+    "imageSrc": "./image/0024.jpg",
     "numInStock": 7
   },
   {
     "_id": 8,
     "category": "mix fibers",
-    "imageSrc": "/client/Image/0010.jpg",
+    "imageSrc": "./image/0010.jpg",
     "numInStock": 3
   },
   {
     "_id": 9,
     "category": "stynthetic fiber",
-    "imageSrc": "/client/Image/0011.jpg",
+    "imageSrc": "./image/0011.jpg",
     "numInStock": 5
   },
   {
     "_id": 10,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/0019.jpg",
+    "imageSrc": "/client/image/0019.jpg",
     "numInStock": 4
   },
   {
     "_id": 11,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/0020.jpg",
+    "imageSrc": "/client/image/0020.jpg",
     "numInStock": 9
   },
   {
     "_id": 12,
     "category": "nature fiber",
-    "imageSrc": "/client/Image/0025.jpg",
+    "imageSrc": "/client/image/0025.jpg",
     "numInStock": 3
   },
   {
     "_id": 13,
     "category": "stynthetic fiber",
-    "imageSrc": "/client/Image/0015.jpg",
+    "imageSrc": "/client/image/0015.jpg",
     "numInStock": 6
   },
   {
     "_id": 14,
     "category": "mix fiber",
-    "imageSrc": "/client/Image/006.jpg",
+    "imageSrc": "/client/image/006.jpg",
     "numInStock": 9
   }
 ]

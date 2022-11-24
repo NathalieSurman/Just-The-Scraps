@@ -1,15 +1,10 @@
-import Announcement from "./Announcement";
-import Header from "./Header";
-import Slider from "./Slider";
-
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import MainPage from "./MainPage";
 const Home = () => {
-  return (
-    <div>
-      <Announcement />
-      <Header />
-      <Slider />
-    </div>
-  );
+  const { isAuthenticated } = useAuth0();
+  return <div>{isAuthenticated ? <MainPage /> : <LoginButton />}</div>;
 };
 
 export default Home;
