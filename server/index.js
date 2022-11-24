@@ -12,6 +12,8 @@ const {
   getFabricCategories,
   getFabricCategoriesById,
 } = require("./handlers/categories");
+
+const { createPost, stockUpdate, deletePost } = require("./handlers/userpost");
 //--- -==========================================================================------//
 
 express()
@@ -24,6 +26,9 @@ express()
   })
 
   //#### Endpoints####/
+  .post("/create-post", createPost)
+  .patch("/update-stock/:_id", stockUpdate) // this updates when you want to buy something
+  .delete("/delete-post/:_id", deletePost)
 
   //---endpoints for the all the fabrics and one fabric ---//
   .get("/fabric", getAllFabrics)

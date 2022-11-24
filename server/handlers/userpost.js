@@ -13,19 +13,17 @@ const { v4: uuidv4 } = require("uuid");
 
 const createPost = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const postId = uuidv4();
+
   await client.connect();
   try {
     const dbName = "justfabrics";
     const db = client.db(dbName);
-    const postSubmit = req.body;
-    postSubmit.id = postId;
-    //----- add an item in the collection "fabric"-----//
-    const post = await db.collection("fabric").insertOne(postSubmit);
+    const postSubmit = { ...req.body, _id: uuidv4() };
 
-    post
-      ? res.status(200).json({ status: 200, data: postSubmit })
-      : res.status(400).json({ status: 400, data: postSubmit });
+    //----- add an item in the collection "fabric"-----//
+    await db.collection("fabric").insertOne(postSubmit);
+
+    res.status(200).json({ status: 200, data: postSubmit });
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }
@@ -34,7 +32,7 @@ const createPost = async (req, res) => {
 
 //-- We need a function to PATCH the product the user makes this will Update the  data---//
 
-const updatePost = async (req, res) => {
+const stockUpdate = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
 
   await client.connect();
@@ -43,20 +41,24 @@ const updatePost = async (req, res) => {
     const dbName = "justfabrics";
     const db = client.db(dbName);
 
-    const _id = parseInt(req.body._id);
-    const quantityPost = parseInt(req.body.quantityPost);
+    const _id = req.params._id;
+    const quantityPurchase = parseInt(req.body.quantityPurchase);
 
-    //----- find one _id in the collection "fabric"-----//
+    //----- find the fabric that users want to buy"-----//
     const findFabric = await db.collection("fabric").findOne({ _id });
 
-    //----- find one _id and update it in the collection "fabric"-----//
-    const result = await db
-      .collection("fabric")
-      .findOneAndUpdate({ _id: _id }, { $inc: { numInStock: -quantityPost } });
+    //whatever was avalible to wtv user is trying to buy
+    const updatedStock = {
+      $set: { numInStock: findFabric.numInStock - quantityPurchase },
+    };
 
-    result
-      ? res.status(200).json({ status: 200, data: result })
-      : res.status(400).json({ status: 400, message: "item not found" });
+    await db.collection("fabric").updateOne({ _id: _id }, updatedStock);
+    //----- find one _id and update it in the collection "fabric"-----//
+    // const result = await db
+    //   .collection("fabric")
+    //   .findOneAndUpdate({ _id: _id }, { $inc: { numInStock: -quantityPost } });
+
+    res.status(200).json({ status: 200, message: "stock is updated" });
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }
@@ -71,14 +73,15 @@ const deletePost = async (req, res) => {
   try {
     const dbName = "justfabrics";
     const db = client.db(dbName);
+    const _id = req.params._id;
     //----- delete the collection  "fabric" -----//
-    const deletePost = await db.collection("fabric").deleteMany({});
-    !deletePost
+    const deletePost = await db.collection("fabric").deleteOne({ _id: _id });
+    !deletePost.deletedCount
       ? res
           .status(404)
           .json({ status: 404, data: deletePost, message: "invalid" })
-      : res.status(201).json({
-          status: 201,
+      : res.status(204).json({
+          status: 204,
           data: deletePost,
           message: "Your item has been deleted successfully",
         });
@@ -90,5 +93,5 @@ const deletePost = async (req, res) => {
 module.exports = {
   createPost,
   deletePost,
-  updatePost,
+  stockUpdate,
 };

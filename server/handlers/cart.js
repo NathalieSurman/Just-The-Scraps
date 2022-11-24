@@ -13,19 +13,18 @@ const getCart = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   try {
+    const email = req.params.email; //url param email for each user
     const dbName = "justfabrics";
     const db = client.db(dbName);
     //----- find a array in the collection "cart" -----//
-    const cart = await db.collection("cart").find().toArray();
-    cart
+    const userCart = await db.collection("cart").findOne({ email: email });
+    userCart
       ? res.status(200).json({
           status: 200,
-          data: cart,
+          data: userCart,
           message: "cart successfully",
         })
-      : res
-          .status(404)
-          .json({ status: 404, data: cart, message: " cart error" });
+      : res.status(404).json({ status: 404, message: " cart error" });
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }
@@ -36,19 +35,16 @@ const getCart = async (req, res) => {
 
 const addToCart = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const id = uuidv4();
-  const _id = parseInt(req.body._id);
+
   await client.connect();
   try {
     const dbName = "justfabrics";
     const db = client.db(dbName);
-    const addItem = req.body;
-    addItem.id = id;
+    const addItem = { ...req.body, _id: uuidv4() };
+
     //----- add a object in the collection "cart"-----//
     const addCart = await db.collection("cart").insertOne(addItem);
-    addCart
-      ? res.status(200).json({ status: 200, data: addCart })
-      : res.status(404).json({ status: 404, message: "error" });
+    res.status(200).json({ status: 200, data: addCart });
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }
@@ -114,33 +110,9 @@ const deleteCartItem = async (req, res) => {
 
 // -- We need a function to DELETE everything in the  cart ----//
 
-const deleteCart = async (req, res) => {
-  const client = new MongoClient(MONGO_URI, options);
-  await client.connect();
-  try {
-    const dbName = "justfabrics";
-    const db = client.db(dbName);
-    //----- delete the collection  "fabric" -----//
-    const cartDelete = await db.collection("cart").deleteMany({});
-    !cartDelete
-      ? res
-          .status(404)
-          .json({ status: 404, data: cartDelete, message: "invalid" })
-      : res.status(201).json({
-          status: 201,
-          data: cartDelete,
-          message: "deleted successfully",
-        });
-  } catch (err) {
-    return res.status(500).json({ status: 500, message: err.message });
-  }
-  client.close();
-};
-
 module.exports = {
   getCart,
   addToCart,
   deleteCartItem,
   updateCart,
-  deleteCart,
 };
