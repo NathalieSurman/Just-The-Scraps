@@ -7,13 +7,25 @@ const PORT = 8000;
 const { getAllFabrics, getFabric } = require("./handlers/fabrics");
 //--- -==========================================================================------//
 
-//--- This is the endpoint to get all the fabrics caetegorie and by its id ------//
+//--- This is the endpoint to get all the fabric categories and by its id ------//
 const {
   getFabricCategories,
   getFabricCategoriesById,
 } = require("./handlers/categories");
+//--- -==========================================================================------//
 
+//--- This is the endpoint for users to create a Post of an item, to be able to "buy" what is in stock and
+//-- We want the stock of the product to update. Finally we want the user to be able to delete their item------//
 const { createPost, stockUpdate, deletePost } = require("./handlers/userpost");
+//--- -==========================================================================------//
+
+//--- all endpoint for the cart ---//
+const {
+  getCart,
+  addToCart,
+  deleteCartItem,
+  updateCart,
+} = require("./handlers/cart");
 //--- -==========================================================================------//
 
 express()
@@ -26,17 +38,26 @@ express()
   })
 
   //#### Endpoints####/
+
+  //---endpoints for the all the fabrics and by its Id  ---//
+  .get("/fabric", getAllFabrics)
+  .get("/fabric/:_id", getFabric)
+
+  //----- this is the endpoint for the fabric categories ----//
+  .get("/categories", getFabricCategories)
+  .get("/categories/:category", getFabricCategoriesById)
+
+  //-----This is the endpoint on user post, updated/buying whats in stock and user is able to delete their posted item ----//
   .post("/create-post", createPost)
   .patch("/update-stock/:_id", stockUpdate) // this updates when you want to buy something
   .delete("/delete-post/:_id", deletePost)
 
-  //---endpoints for the all the fabrics and one fabric ---//
-  .get("/fabric", getAllFabrics)
-  .get("/fabric/:_id", getFabric)
+  // -- Endpoint for the cart -- //
 
-  //----- this is the endpoint for the fabric categories ----/
-  .get("/categories", getFabricCategories)
-  .get("/categories/:category", getFabricCategoriesById)
+  .get("/cart", getCart)
+  .post("/add-cart", addToCart)
+  .patch("/update-cart", updateCart)
+  .delete("/delete-cart/:id", deleteCartItem)
 
   .listen(PORT, () => {
     console.log(`listening on PORT ${PORT}`);
