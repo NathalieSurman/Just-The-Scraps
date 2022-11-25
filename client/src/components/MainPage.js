@@ -1,16 +1,17 @@
 import React from "react";
-import Announcement from "./Announcement";
-import Header from "./Header";
+import styled from "styled-components";
 import Slider from "./Slider";
 
 const MainPage = () => {
   return (
-    <div>
-      <Announcement />
-      <Header />
+    <Container>
       <Slider />
-    </div>
+    </Container>
   );
 };
 
 export default MainPage;
+
+const Container = styled.div`
+  background-color: #122620;
+`;

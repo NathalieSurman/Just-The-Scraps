@@ -35,7 +35,7 @@ const getAllFabrics = async (req, res) => {
 //-----function to GET a one of the fabric --------//
 
 const getFabric = async (req, res) => {
-  const _id = Number(req.params._id);
+  const _id = req.params._id;
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   try {

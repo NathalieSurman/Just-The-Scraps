@@ -31,8 +31,9 @@ const createPost = async (req, res) => {
 };
 
 //-- We need a function to PATCH the product the user makes this will Update the  data---//
+/// NEED to change this too update date the post TODO
 
-const stockUpdate = async (req, res) => {
+const postUpdate = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
 
   await client.connect();
@@ -42,17 +43,17 @@ const stockUpdate = async (req, res) => {
     const db = client.db(dbName);
 
     const _id = req.params._id;
-    const quantityPurchase = parseInt(req.body.quantityPurchase);
 
     //----- find the fabric that users want to buy"-----//
     const findFabric = await db.collection("fabric").findOne({ _id });
-
+    console.log("findFabric", findFabric);
+    findFabric.isAvailable = false;
     //whatever was avalible to wtv user is trying to buy
-    const updatedStock = {
-      $set: { numInStock: findFabric.numInStock - quantityPurchase },
+    const updateAvailable = {
+      $set: { isAvailable: findFabric.isAvailable },
     };
 
-    await db.collection("fabric").updateOne({ _id: _id }, updatedStock);
+    await db.collection("fabric").updateOne({ _id: _id }, updateAvailable);
     //----- find one _id and update it in the collection "fabric"-----//
     // const result = await db
     //   .collection("fabric")
@@ -93,5 +94,5 @@ const deletePost = async (req, res) => {
 module.exports = {
   createPost,
   deletePost,
-  stockUpdate,
+  postUpdate,
 };

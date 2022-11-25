@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { TfiSearch } from "react-icons/tfi";
-import { SlBag } from "react-icons/sl";
 import { Link } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
+import Announcement from "./Announcement";
 
 const Header = () => {
+  if (window.location.pathname === "/") {
+    return null;
+  }
   return (
     <Container>
       <Wrapper>
@@ -12,20 +16,16 @@ const Header = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input />
-
-            <TfiSearch style={{ color: "grey", fontSize: 16 }} />
+            <TfiSearch style={{ color: "#d6ad60", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Just The Scraps.</Logo>
+          <LogoLink to="/mainpage">Just The Scraps.</LogoLink>
         </Center>
         <Right>
-          <h2>LOGOUT</h2>
+          <LogoutButton />
           <StyledLink to="/fabric">Fabrics</StyledLink>
-
-          <CartIconLink to="/cart">
-            <SlBag />
-          </CartIconLink>
+          <StyledLink to="/profile">Profile</StyledLink>
         </Right>
       </Wrapper>
     </Container>
@@ -36,6 +36,7 @@ export default Header;
 
 const Container = styled.div`
   height: 60px;
+  background-color: #122620;
 `;
 
 const Wrapper = styled.div`
@@ -52,7 +53,7 @@ const Left = styled.div`
 `;
 
 const SearchContainer = styled.div`
-  border: 0.5px solid lightblue;
+  border: 0.5px solid #d6ad60;
   display: flex;
   align-items: center;
   margin-left: 25px;
@@ -66,11 +67,16 @@ const Input = styled.input`
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
+  color: #d6ad60;
 `;
 
-const Logo = styled.h1`
+const LogoLink = styled(Link)`
   font-weight: bold;
+  color: #d6ad60;
+  font-size: 37px;
+  text-decoration: none;
 `;
+
 const Center = styled.div`
   flex: 1;
   text-align: center;
@@ -79,13 +85,13 @@ const Center = styled.div`
 const Right = styled.div`
   flex: 1;
   display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: flex-end;
 `;
-const CartIconLink = styled(Link)`
-  font-size: 14px;
-  cursor: pointer;
-  margin-left: 25px;
-`;
 
-const StyledLink = styled(Link)``;
+const StyledLink = styled(Link)`
+  color: #d6ad60;
+  text-decoration: none;
+  font-size: 18px;
+`;

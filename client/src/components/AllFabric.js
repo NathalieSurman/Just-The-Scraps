@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import FabricItem from "./FabricItem";
 
 const AllFabric = () => {
@@ -13,13 +14,33 @@ const AllFabric = () => {
   }, []);
   console.log(allFabrics);
   return (
-    <div>
+    <Container>
       {!allFabrics ? (
         <h1>Loading</h1>
       ) : (
         <div>
-          <h2>Get your fabric</h2>
-          <div>
+          <Title>Get your fabric</Title>
+          <MapInfo>
+            {allFabrics.map((fabric) => {
+              return (
+                <>
+                  <div>
+                    <label>{fabric.location}</label>
+                    <input
+                      type="radio"
+                      name="location"
+                      value={fabric.location}
+                    />
+                  </div>
+                  <div>
+                    <label>{fabric.size}</label>
+                    <input type="radio" name="size" value={fabric.size} />
+                  </div>
+                </>
+              );
+            })}
+          </MapInfo>
+          <MapInfo>
             {allFabrics.map((fabric) => {
               return (
                 <FabricItem
@@ -29,11 +50,17 @@ const AllFabric = () => {
                 />
               );
             })}
-          </div>
+          </MapInfo>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
 export default AllFabric;
+
+const Container = styled.div``;
+
+const MapInfo = styled.div``;
+
+const Title = styled.h2``;

@@ -14,19 +14,12 @@ const {
 } = require("./handlers/categories");
 //--- -==========================================================================------//
 
-//--- This is the endpoint for users to create a Post of an item, to be able to "buy" what is in stock and
-//-- We want the stock of the product to update. Finally we want the user to be able to delete their item------//
-const { createPost, stockUpdate, deletePost } = require("./handlers/userpost");
+//--- This is the endpoint for users to create a Post of an item, to be able to "buy" what is in post and
+//-- We want the post of the product to update. Finally we want the user to be able to delete their item------//
+const { createPost, postUpdate, deletePost } = require("./handlers/userpost");
 //--- -==========================================================================------//
 
-//--- all endpoint for the cart ---//
-const {
-  getCart,
-  addToCart,
-  deleteCartItem,
-  updateCart,
-} = require("./handlers/cart");
-//--- -==========================================================================------//
+const { addCheckout } = require("./handlers/checkout");
 
 express()
   .use(express.json())
@@ -49,15 +42,11 @@ express()
 
   //-----This is the endpoint on user post, updated/buying whats in stock and user is able to delete their posted item ----//
   .post("/create-post", createPost)
-  .patch("/update-stock/:_id", stockUpdate) // this updates when you want to buy something
+  .patch("/update/:_id", postUpdate)
   .delete("/delete-post/:_id", deletePost)
 
-  // -- Endpoint for the cart -- //
-
-  .get("/cart", getCart)
-  .post("/add-cart", addToCart)
-  .patch("/update-cart", updateCart)
-  .delete("/delete-cart/:id", deleteCartItem)
+  // -- Endpoint for the checkout item -- //
+  .post("/checkout", addCheckout) // NOT SURE Might not need
 
   .listen(PORT, () => {
     console.log(`listening on PORT ${PORT}`);

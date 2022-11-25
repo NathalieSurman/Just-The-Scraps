@@ -4,7 +4,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MainPage from "./MainPage";
 const Home = () => {
   const { isAuthenticated } = useAuth0();
-  return <div>{isAuthenticated ? <MainPage /> : <LoginButton />}</div>;
+  return (
+    <div>
+      <LoginButton />
+    </div>
+  );
 };
 
 export default Home;

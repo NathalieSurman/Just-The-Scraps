@@ -1,86 +1,114 @@
 [
   {
-    "_id": 1,
-    "category": "nature fiber",
-    "imageSrc": "./image/001.jpg",
-    "numInStock": 5
+    "_id": "1",
+    "category": "natural fiber",
+    "imageSrc": "/image/001.jpg",
+    "isAvailable": true,
+    "location": "downtown",
+    "size": "large"
   },
   {
-    "_id": 2,
+    "_id": "2",
     "category": "nature fiber",
-    "imageSrc": "./image/002.jpg",
-    "numInStock": 0
+    "imageSrc": "/image/002.jpg",
+    "isAvailable": true,
+    "location": "downtown",
+    "size": "large"
   },
   {
-    "_id": 3,
+    "_id": "3",
     "category": "nature fiber",
-    "imageSrc": "./image/003.jpg",
-    "numInStock": 3
+    "imageSrc": "/image/003.jpg",
+    "isAvailable": true,
+    "location": "laval",
+    "size": "large"
   },
   {
-    "_id": 4,
+    "_id": "4",
     "category": "mix fibers",
-    "imageSrc": "./image/004.jpg",
-    "numInStock": 2
+    "imageSrc": "/image/004.jpg",
+    "isAvailable": true,
+    "location": "laval",
+    "size": "small"
   },
   {
-    "_id": 5,
+    "_id": "5",
     "category": "mix fibers",
     "imageSrc": "/image/009.jpg",
-    "numInStock": 0
+    "isAvailable": true,
+    "location": "laval",
+    "size": "medium"
   },
   {
-    "_id": 6,
+    "_id": "6",
     "category": "mix fibers",
-    "imageSrc": "./image/0014.jpg",
-    "numInStock": 4
+    "imageSrc": "/image/0014.jpg",
+    "isAvailable": true,
+    "location": "verdom",
+    "size": "medium"
   },
   {
-    "_id": 7,
+    "_id": "7",
     "category": "mix fibers",
-    "imageSrc": "./image/0024.jpg",
-    "numInStock": 7
+    "imageSrc": "/image/0024.jpg",
+    "isAvailable": true,
+    "location": "verdom",
+    "size": "medium"
   },
   {
-    "_id": 8,
+    "_id": "8",
     "category": "mix fibers",
-    "imageSrc": "./image/0010.jpg",
-    "numInStock": 3
+    "imageSrc": "/image/0010.jpg",
+    "isAvailable": true,
+    "location": "verdom",
+    "size": "medium"
   },
   {
-    "_id": 9,
+    "_id": "9",
     "category": "stynthetic fiber",
-    "imageSrc": "./image/0011.jpg",
-    "numInStock": 5
+    "imageSrc": "/image/0011.jpg",
+    "isAvailable": true,
+    "location": "metro stop",
+    "size": "small"
   },
   {
-    "_id": 10,
+    "_id": "10",
     "category": "nature fiber",
-    "imageSrc": "/client/image/0019.jpg",
-    "numInStock": 4
+    "imageSrc": "/image/0019.jpg",
+    "isAvailable": true,
+    "location": "metro stop",
+    "size": "small"
   },
   {
-    "_id": 11,
+    "_id": "11",
     "category": "nature fiber",
-    "imageSrc": "/client/image/0020.jpg",
-    "numInStock": 9
+    "imageSrc": "/image/0020.jpg",
+    "isAvailable": true,
+    "location": "metro stop",
+    "size": "small"
   },
   {
-    "_id": 12,
+    "_id": "12",
     "category": "nature fiber",
-    "imageSrc": "/client/image/0025.jpg",
-    "numInStock": 3
+    "imageSrc": "/image/0025.jpg",
+    "isAvailable": true,
+    "location": "griffintown",
+    "size": "large"
   },
   {
-    "_id": 13,
+    "_id": "13",
     "category": "stynthetic fiber",
-    "imageSrc": "/client/image/0015.jpg",
-    "numInStock": 6
+    "imageSrc": "/image/0015.jpg",
+    "isAvailable": true,
+    "location": "griffintown",
+    "size": "large"
   },
   {
-    "_id": 14,
+    "_id": "14",
     "category": "mix fiber",
-    "imageSrc": "/client/image/006.jpg",
-    "numInStock": 9
+    "imageSrc": "/image/006.jpg",
+    "isAvailable": true,
+    "location": "griffintown",
+    "size": "large"
   }
 ]
