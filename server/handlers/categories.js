@@ -21,9 +21,10 @@ const getFabricCategories = async (req, res) => {
 
     let categories = [];
     //----- We want a function that will loop and find the right category-----//
-    allFabrics.forEach((watch) => {
-      if (categories.indexOf(watch.category) === -1) {
-        categories.push(watch.category);
+
+    allFabrics.forEach((fabric) => {
+      if (!categories.includes(fabric.category)) {
+        categories.push(fabric.category);
       }
     });
 

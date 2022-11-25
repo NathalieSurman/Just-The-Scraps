@@ -12,7 +12,7 @@ const AllFabric = () => {
       });
     });
   }, []);
-  console.log(allFabrics);
+
   return (
     <Container>
       {!allFabrics ? (
@@ -59,8 +59,25 @@ const AllFabric = () => {
 
 export default AllFabric;
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin: 0px;
+  padding: 0px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #122620;
+`;
 
-const MapInfo = styled.div``;
+const MapInfo = styled.div`
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: fit-content;
+`;
 
 const Title = styled.h2``;

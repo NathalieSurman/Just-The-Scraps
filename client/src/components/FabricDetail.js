@@ -48,6 +48,12 @@ const FabricDetail = () => {
             <CategoryDiv>
               Category:<span> {item.category}</span>
             </CategoryDiv>
+            <CategoryDiv>
+              Location:<span> {item.location}</span>
+            </CategoryDiv>
+            <CategoryDiv>
+              size:<span> {item.size}</span>
+            </CategoryDiv>
             <CartButton disabled={!item.isAvailable} onClick={buyHandler}>
               I want this
             </CartButton>
@@ -60,13 +66,22 @@ const FabricDetail = () => {
 
 export default FabricDetail;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+`;
 const CategoryDiv = styled.div``;
+
 const ImgDiv = styled.div``;
+
 const CartButton = styled.button`
   :disabled {
     cursor: not-allowed;
     background: red;
   }
 `;
-const ItemInfo = styled.div``;
+const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

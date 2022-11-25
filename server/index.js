@@ -40,7 +40,7 @@ express()
   .get("/categories", getFabricCategories)
   .get("/categories/:category", getFabricCategoriesById)
 
-  //-----This is the endpoint on user post, updated/buying whats in stock and user is able to delete their posted item ----//
+  //-----This is the endpoint on user post, updated a fabric item and user is able to delete their posted item ----//
   .post("/create-post", createPost)
   .patch("/update/:_id", postUpdate)
   .delete("/delete-post/:_id", deletePost)

@@ -15,6 +15,7 @@ const FiberCategory = () => {
   useEffect(() => {
     fetch(`/categories`).then((res) => {
       res.json().then((data) => {
+        console.log(data.categories);
         setAllCategories(data.categories);
       });
     });
@@ -37,9 +38,12 @@ const FiberCategory = () => {
           {/*Map allCategories onto Category NavLinks */}
           {allCategories.map((link) => {
             return (
-              <CategoryLink key={link} to={`/categories/${link}`}>
-                {link}
-              </CategoryLink>
+              <div>
+                <CategoryLink key={link} to={`/categories/${link}`}>
+                  {link}
+                </CategoryLink>
+                {/* <Image src="/natural2.jpg" alt="fabric" /> */}
+              </div>
             );
           })}
         </MapInfo>
@@ -52,8 +56,35 @@ export default FiberCategory;
 
 const Container = styled.div``;
 
-const MapInfo = styled.div``;
+const MapInfo = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  color: white;
+  margin-bottom: 20px;
+`;
 const CategoryLink = styled(Link)``;
+const Image = styled.img`
+  /* width: 100%;
+  height: 100%;
+  object-fit: cover; */
+`;
+
+const Button = styled.button`
+  border: none;
+  padding: 10px;
+  background-color: white;
+  color: grey;
+  cursor: pointer;
+`;
+
 ///categories

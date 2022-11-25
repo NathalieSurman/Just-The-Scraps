@@ -31,7 +31,6 @@ const createPost = async (req, res) => {
 };
 
 //-- We need a function to PATCH the product the user makes this will Update the  data---//
-/// NEED to change this too update date the post TODO
 
 const postUpdate = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
