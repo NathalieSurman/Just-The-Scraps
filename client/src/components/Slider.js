@@ -102,6 +102,7 @@ const Slide3 = styled.div`
 const ImageContainer = styled.div`
   flex: 1;
   height: 100%;
+  background-size: cover;
 `;
 const InfoContainer = styled.div`
   flex: 1;
