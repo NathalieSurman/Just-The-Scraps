@@ -15,44 +15,46 @@ const AllFabric = () => {
 
   return (
     <Container>
-      {!allFabrics ? (
-        <h1>Loading</h1>
-      ) : (
-        <div>
-          <Title>Get your fabric</Title>
-          <MapInfo>
-            {allFabrics.map((fabric) => {
-              return (
-                <>
-                  <div>
-                    <label>{fabric.location}</label>
-                    <input
-                      type="radio"
-                      name="location"
-                      value={fabric.location}
-                    />
-                  </div>
-                  <div>
-                    <label>{fabric.size}</label>
-                    <input type="radio" name="size" value={fabric.size} />
-                  </div>
-                </>
-              );
-            })}
-          </MapInfo>
-          <MapInfo>
-            {allFabrics.map((fabric) => {
-              return (
-                <FabricItem
-                  key={fabric._id}
-                  item={fabric}
-                  img={fabric.imageSrc}
-                />
-              );
-            })}
-          </MapInfo>
-        </div>
-      )}
+      <Wrapper>
+        {!allFabrics ? (
+          <h1>Loading</h1>
+        ) : (
+          <div>
+            <Title>Get your fabric</Title>
+            <MapInfo>
+              {allFabrics.map((fabric) => {
+                return (
+                  <>
+                    <div>
+                      <label>{fabric.location}</label>
+                      <input
+                        type="radio"
+                        name="location"
+                        value={fabric.location}
+                      />
+                    </div>
+                    <div>
+                      <label>{fabric.size}</label>
+                      <input type="radio" name="size" value={fabric.size} />
+                    </div>
+                  </>
+                );
+              })}
+            </MapInfo>
+            <MapInfo>
+              {allFabrics.map((fabric) => {
+                return (
+                  <FabricItem
+                    key={fabric._id}
+                    item={fabric}
+                    img={fabric.imageSrc}
+                  />
+                );
+              })}
+            </MapInfo>
+          </div>
+        )}
+      </Wrapper>
     </Container>
   );
 };
@@ -67,7 +69,21 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  /* background-color: #f0ebe3; */
+  position: relative;
+`;
+const Wrapper = styled.div`
+  :before {
+    content: "";
+    background-image: url("/cover2.jpg");
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.6;
+  }
 `;
 
 const MapInfo = styled.div`

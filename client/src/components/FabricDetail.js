@@ -65,7 +65,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url("/cover.jpg");
+  background-image: url("/cover2.jpg");
+
   background: cover;
 `;
 
@@ -138,20 +139,20 @@ const Image = styled.img`
 
 const Category = styled.h2`
   font-size: 18px;
-  color: white;
+  color: black;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 const Location = styled.h3`
   font-size: 24px;
-  color: white;
+  color: black;
   font-weight: 700;
   letter-spacing: 1px;
 `;
 const Size = styled.h3`
   font-size: 24px;
-  color: white;
+  color: black;
 `;
 
 const CartButton = styled.button`
