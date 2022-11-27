@@ -67,7 +67,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #122620;
+  /* background-color: #f0ebe3; */
 `;
 
 const MapInfo = styled.div`
@@ -76,8 +76,10 @@ const MapInfo = styled.div`
   grid-template-columns: 300px 300px 300px 300px;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
   height: fit-content;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  color: #122620;
+`;
