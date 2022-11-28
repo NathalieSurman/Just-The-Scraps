@@ -5,25 +5,57 @@ import FabricItem from "./FabricItem";
 const AllFabric = () => {
   const [allFabrics, setAllFabrics] = useState("");
   const [filterFabrics, setFilterFabrics] = useState({});
+  const [locations, setLocations] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [activeInput, setActiveInput] = useState("");
 
   useEffect(() => {
     fetch("/fabric").then((res) => {
       res.json().then((data) => {
-        setAllFabrics(data.data);
-        setFilterFabrics(data.data);
+        if (Object.values(filterFabrics).length === 0) {
+          setAllFabrics(data.data);
+        }
+
+        setLocations([...new Set(data.data.map((item) => item.location))]);
+        setSizes([...new Set(data.data.map((item) => item.size))]);
+        setCategories([...new Set(data.data.map((item) => item.category))]);
+
+        if (Object.values(filterFabrics).length === 1) {
+          const filter = Object.values(filterFabrics)[0];
+          setAllFabrics(
+            data.data.filter((item) => item[filter] === filterFabrics[filter])
+          );
+        } else {
+          if (filterFabrics.location) {
+            const filter2 = Object.values(filterFabrics)[1];
+            setAllFabrics(
+              allFabrics.filter(
+                (item) => item[filter2] === filterFabrics[filter2]
+              )
+            );
+          }
+          if (filterFabrics.category) {
+            const filte3 = Object.values(filterFabrics)[2];
+            setAllFabrics(
+              allFabrics.filter(
+                (item) => item[filte3] === filterFabrics[filte3]
+              )
+            );
+          }
+        }
       });
     });
+  }, [filterFabrics]);
 
-    // //We want to get only one item each time
-
-    // //We want if one of the filters is picked
-  }, []);
   const handleChange = (e) => {
-    setFilterFabrics({ ...filterFabrics, [e.target.name]: [e.target.value] });
+    setFilterFabrics({
+      ...filterFabrics,
+      [e.target.name]: [e.target.value][0],
+    });
   };
 
-  console.log(allFabrics);
+  console.log("allFabrics", allFabrics);
 
   return (
     <Container>
@@ -34,31 +66,57 @@ const AllFabric = () => {
           <div>
             <Title>Get your fabric</Title>
             <MapInfo>
-              {allFabrics.map((fabric) => {
-                //NOTE this keeps repeating the same data TODO
-                return (
-                  <React.Fragment key={fabric.location}>
-                    <div>
-                      <label>{fabric.location}</label>
-                      <input
-                        onChange={handleChange}
-                        type="radio"
-                        name="location"
-                        value={fabric.location}
-                      />
-                    </div>
-                    <div>
-                      <label>{fabric.size}</label>
-                      <input
-                        onChange={handleChange}
-                        type="radio"
-                        name="size"
-                        value={fabric.size}
-                      />
-                    </div>
-                  </React.Fragment>
-                );
-              })}
+              //NOTE this keeps repeating the same data TODO
+              <React.Fragment>
+                <div>
+                  <p>location</p>
+                  {locations.map((location) => {
+                    return (
+                      <>
+                        <label>{location}</label>
+                        <input
+                          onChange={handleChange}
+                          type="radio"
+                          name="location"
+                          value={location}
+                        />
+                      </>
+                    );
+                  })}
+                </div>
+                <div>
+                  <p>Size</p>
+                  {sizes.map((size) => {
+                    return (
+                      <>
+                        <label>{size}</label>
+                        <input
+                          onChange={handleChange}
+                          type="radio"
+                          name="size"
+                          value={size}
+                        />
+                      </>
+                    );
+                  })}
+                </div>
+                <div>
+                  <p>Category</p>
+                  {categories.map((category) => {
+                    return (
+                      <>
+                        <label>{category}</label>
+                        <input
+                          onChange={handleChange}
+                          type="radio"
+                          name="category"
+                          value={category}
+                        />
+                      </>
+                    );
+                  })}
+                </div>
+              </React.Fragment>
             </MapInfo>
             <MapInfo>
               {allFabrics.map((fabric) => {

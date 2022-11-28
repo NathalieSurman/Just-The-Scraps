@@ -35,7 +35,7 @@ const Profile = () => {
   };
   // const { _id } = useParams();
 
-  // //-----Update the fabric data----///
+  // //-----Update the fabric data for it show it in the all fabric page----///
   // const postItem = () => {
   //   // increasing(product);
   //   fetch(`/update/${_id}`, {
@@ -48,7 +48,7 @@ const Profile = () => {
   //   });
   // };
 
-  // //--- User can DELETE their fabric item ----//
+  // //--- User can DELETE their fabric item post ----//
   // const deleteItem = () => {
   //   // removing(product);
   //   fetch(`/delete-post//${_id}`, {
