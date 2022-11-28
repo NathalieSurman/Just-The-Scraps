@@ -8,10 +8,6 @@ const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [inputValue, setInputValue] = useState("");
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-
   //making a event for when we submitted the product item "fabric"
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +59,9 @@ const Profile = () => {
   //     },
   //   });
   // };
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     isAuthenticated && (

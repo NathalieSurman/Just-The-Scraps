@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FabricItem from "./FabricItem";
 
 const AllFabric = () => {
   const [allFabrics, setAllFabrics] = useState("");
+  const [filterFabrics, setFilterFabrics] = useState({});
+  const [activeInput, setActiveInput] = useState("");
 
   useEffect(() => {
     fetch("/fabric").then((res) => {
       res.json().then((data) => {
         setAllFabrics(data.data);
+        setFilterFabrics(data.data);
       });
     });
+
+    // //We want to get only one item each time
+
+    // //We want if one of the filters is picked
   }, []);
+  const handleChange = (e) => {
+    setFilterFabrics({ ...filterFabrics, [e.target.name]: [e.target.value] });
+  };
+
+  console.log(allFabrics);
 
   return (
     <Container>
@@ -23,11 +35,13 @@ const AllFabric = () => {
             <Title>Get your fabric</Title>
             <MapInfo>
               {allFabrics.map((fabric) => {
+                //NOTE this keeps repeating the same data TODO
                 return (
-                  <>
+                  <React.Fragment key={fabric.location}>
                     <div>
                       <label>{fabric.location}</label>
                       <input
+                        onChange={handleChange}
                         type="radio"
                         name="location"
                         value={fabric.location}
@@ -35,9 +49,14 @@ const AllFabric = () => {
                     </div>
                     <div>
                       <label>{fabric.size}</label>
-                      <input type="radio" name="size" value={fabric.size} />
+                      <input
+                        onChange={handleChange}
+                        type="radio"
+                        name="size"
+                        value={fabric.size}
+                      />
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
             </MapInfo>

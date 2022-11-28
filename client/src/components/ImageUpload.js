@@ -1,22 +1,58 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ImageUpload = () => {
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
-  useEffect(() => {
-    cloudinaryRef.current = window.cloudinary;
-    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [images, setImages] = useState([]);
+  const [imagesToRemove, setImagesToRemove] = useState(null);
+
+  const handleRemoveImg = (imgObj) => {};
+
+  const handleOpenWidget = (e) => {
+    e.preventDefault();
+    let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dpacwtxaj",
         uploadPreset: "jnj9cmxktest",
       },
-      function (error, result) {
-        console.log(result);
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setImages((prev) => [
+            ...prev,
+            { url: result.info, public_id: result.info.public_id },
+          ]);
+          console.log("done! ehre is the image info: ", result.info);
+        }
       }
     );
-  }, []);
-  return <Button onClick={() => widgetRef.current.open()}>Upload Image</Button>;
+    myWidget.open();
+  };
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+  return (
+    <div>
+      <Container>
+        <Button
+          id="upload-widget"
+          className="cloudinary-button"
+          onClick={(e) => handleOpenWidget(e)}
+        >
+          Upload
+        </Button>
+        <div className="images-preview-container">
+          {images.map((image) => {
+            return (
+              <div>
+                <img src={image.url.url} />
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </div>
+  );
 };
 
 export default ImageUpload;
@@ -39,3 +75,6 @@ const Button = styled.button`
     background: #7c99ac;
   }
 `;
+
+const Container = styled.div``;
+//<Button onClick={() => widgetRef.current.open()}>Upload Image</Button>

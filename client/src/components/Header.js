@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { TfiSearch } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
-import Announcement from "./Announcement";
 
 const Header = () => {
   if (window.location.pathname === "/") {
