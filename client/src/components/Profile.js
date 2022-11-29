@@ -7,8 +7,42 @@ import { useParams } from "react-router-dom";
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [inputValue, setInputValue] = useState("");
+  const [formData, setFormData] = useState({});
+  const [itemState, setItemState] = useState(null);
 
-  //making a event for when we submitted the product item "fabric"
+  const [images, setImages] = useState([]);
+  //we want an event to see what the user put for the location in the input
+  const handleChange = (e) => {
+    setFormData({ ...formData, location: e.target.value });
+  };
+
+  const handleSelect = (e) => {
+    const selectId = e.target.value;
+    //---We want to know which size is being selected by the user ---//
+    const selectedItems = ["small", "medium", "large"].filter(
+      (item) => item === selectId
+    );
+    setItemState(selectedItems);
+    //-- In the setFormData, we needed a way to see what the user picked, therefore we did this ---//
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSelected = (e) => {
+    const selectId = e.target.value;
+    //----We want to know which one is being selected for the fabric type/category type ----//
+    const selectedItems = ["natural", "mix-fiber", "synthetic"].filter(
+      (item) => item === selectId
+    );
+    setItemState(selectedItems);
+    setFormData({ ...formData, [e.target.id]: e.target.value }); //added this so we can see what the user picked
+  };
+
+  //---- Here we want to make sure we match the structure from our data when we create a New fabric item ----//
+  const category = formData.category;
+  const size = formData.sizes;
+  const location = formData.location;
+
+  //--- We are making a event for when we submitted the product item "fabric" ---//
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -18,35 +52,29 @@ const Profile = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userName: inputValue }),
+      body: JSON.stringify({
+        category,
+        size,
+        location,
+        imageSrc: images[0].url.url,
+        isAvailable: true,
+        user: user,
+      }), //not sure here
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 200) {
-          window.sessionStorage.setItem("user", inputValue);
-        } else {
-          window.alert("Fill all the form !");
-        }
+        // console.log(data);
+        // if (data.status === 200) {
+        //   window.sessionStorage.setItem("postSubmit", inputValue); //not sure here
+        // } else {
+        //   window.alert("Fill all the form !");
+        // }
       })
 
       .catch((error) => {
         console.log(error);
       });
   };
-  // const { _id } = useParams();
-
-  // //-----Update the fabric data for it show it in the all fabric page----///
-  // const postItem = () => {
-  //   // increasing(product);
-  //   fetch(`/update/${_id}`, {
-  //     method: "PATCH",
-  //     body: JSON.stringify({}),
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  // };
 
   // //--- User can DELETE their fabric item post ----//
   // const deleteItem = () => {
@@ -73,13 +101,23 @@ const Profile = () => {
           <Name>{user.name}</Name>
           <p>{user.email}</p>
         </UserCard>
-        <ProductForm>
+        <ProductForm onSubmit={handleSubmit}>
           <Title>Add fabric item</Title>
           <div>
             <h3>Fill in Fabric Info</h3>
-            <Input type="text" placeholder="Enter meeting location" />
+            <Input
+              type="text"
+              placeholder="Enter meeting location"
+              onChange={handleChange}
+            />
             <Label for="size">Size Fabric: </Label>
-            <Select>
+            <Select
+              id="sizes"
+              value={inputValue.id}
+              onChange={(e) => {
+                handleSelect(e);
+              }}
+            >
               <optgroup label="Size">
                 <option value="small">Small</option>
                 <option value="medium">Medium</option>
@@ -87,17 +125,23 @@ const Profile = () => {
               </optgroup>
             </Select>{" "}
             <Label for="fabric type">Fabric Type: </Label>
-            <Select>
+            <Select
+              id="category"
+              value={inputValue.id}
+              onChange={(e) => {
+                handleSelected(e);
+              }}
+            >
               <optgroup label="fabric type">
-                <option value="nature">Natural fibers</option>
-                <option value="mix">Mix fibers</option>
+                <option value="natural">Natural fibers</option>
+                <option value="mix-fiber">Mix fibers</option>
                 <option value="synthetic">Synthetic fiber</option>
               </optgroup>
             </Select>
           </div>
-          <ImageUpload />
+          <ImageUpload images={images} setImages={setImages} />
 
-          <Button>Post Fabric</Button>
+          <Button type="submit">Post Fabric</Button>
         </ProductForm>
       </Container>
     )

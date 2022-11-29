@@ -18,12 +18,59 @@ const createPost = async (req, res) => {
   try {
     const dbName = "justfabrics";
     const db = client.db(dbName);
+    const post = req.body.newPost;
+    const location = req.body.location;
+    const image = req.body.image;
+    const size = req.body.size;
+    const user = req.body.user;
+    const category = req.body.category;
     const postSubmit = { ...req.body, _id: uuidv4() };
 
     //----- add an item in the collection "fabric"-----//
     await db.collection("fabric").insertOne(postSubmit);
 
-    res.status(200).json({ status: 200, data: postSubmit });
+    //we want to find the fabric post
+    const fabricPosts = await db
+      .collection("fabric")
+      .findOne({ _id: res.body._id });
+
+    if (fabricPosts.posts) {
+      fabricPosts.posts.push({
+        user: user,
+        post: post,
+        image: image,
+        location: location,
+        size: size,
+        category: category,
+      });
+
+      await db
+        .collection("fabric")
+        .updateOne(
+          { _id: req.body._id },
+          { $set: { posts: fabricPosts, posts } }
+        );
+
+      return res.status(200).json({ status: 200, data: postSubmit });
+    } else {
+      await db.collection("fabric").updateOne(
+        { _id: req.body._id },
+        {
+          $set: {
+            posts: [
+              {
+                user: user,
+                post: post,
+                image: image,
+                location: location,
+                size: size,
+                category: category,
+              },
+            ],
+          },
+        }
+      );
+    }
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }

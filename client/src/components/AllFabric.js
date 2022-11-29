@@ -66,7 +66,6 @@ const AllFabric = () => {
           <div>
             <Title>Get your fabric</Title>
             <MapInfo>
-              //NOTE this keeps repeating the same data TODO
               <React.Fragment>
                 <div>
                   <p>location</p>

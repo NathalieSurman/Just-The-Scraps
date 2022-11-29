@@ -9,7 +9,7 @@
   },
   {
     "_id": "2",
-    "category": "nature fiber",
+    "category": "natural fiber",
     "imageSrc": "/image/002.jpg",
     "isAvailable": true,
     "location": "downtown",
@@ -17,7 +17,7 @@
   },
   {
     "_id": "3",
-    "category": "nature fiber",
+    "category": "natural fiber",
     "imageSrc": "/image/003.jpg",
     "isAvailable": true,
     "location": "laval",
@@ -73,7 +73,7 @@
   },
   {
     "_id": "10",
-    "category": "nature fiber",
+    "category": "natural fiber",
     "imageSrc": "/image/0019.jpg",
     "isAvailable": true,
     "location": "metro stop",
@@ -81,7 +81,7 @@
   },
   {
     "_id": "11",
-    "category": "nature fiber",
+    "category": "natural fiber",
     "imageSrc": "/image/0020.jpg",
     "isAvailable": true,
     "location": "metro stop",
@@ -89,7 +89,7 @@
   },
   {
     "_id": "12",
-    "category": "nature fiber",
+    "category": "natural fiber",
     "imageSrc": "/image/0025.jpg",
     "isAvailable": true,
     "location": "griffintown",
@@ -105,7 +105,7 @@
   },
   {
     "_id": "14",
-    "category": "mix fiber",
+    "category": "mix fibers",
     "imageSrc": "/image/006.jpg",
     "isAvailable": true,
     "location": "griffintown",

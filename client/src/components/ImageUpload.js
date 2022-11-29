@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const ImageUpload = () => {
+const ImageUpload = ({ images, setImages }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [images, setImages] = useState([]);
+  //const [images, setImages] = useState([]);
   const [imagesToRemove, setImagesToRemove] = useState(null);
 
   const handleRemoveImg = (imgObj) => {};
@@ -22,7 +22,7 @@ const ImageUpload = () => {
             ...prev,
             { url: result.info, public_id: result.info.public_id },
           ]);
-          console.log("done! ehre is the image info: ", result.info);
+          console.log("done! here is the image info: ", result.info);
         }
       }
     );
@@ -39,13 +39,13 @@ const ImageUpload = () => {
           className="cloudinary-button"
           onClick={(e) => handleOpenWidget(e)}
         >
-          Upload
+          Upload Image
         </Button>
         <div className="images-preview-container">
           {images.map((image) => {
             return (
               <div>
-                <img src={image.url.url} />
+                <Img src={image.url.url} />
               </div>
             );
           })}
@@ -78,3 +78,10 @@ const Button = styled.button`
 
 const Container = styled.div``;
 //<Button onClick={() => widgetRef.current.open()}>Upload Image</Button>
+
+const Img = styled.img`
+  height: 250px;
+  width: 250px;
+  /* border: 3px solid #292929; */
+  border-radius: 10%;
+`;
