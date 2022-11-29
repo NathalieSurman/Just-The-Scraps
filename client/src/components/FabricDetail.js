@@ -16,8 +16,8 @@ const FabricDetail = () => {
       })
       .catch((err) => console.log("Error: ", err));
   }, [isPurchased]);
-  //TODO the imag does not show
 
+  // ---- We used a PATCH for when a user buys an item/fabric it updates the data that its not available anymore ----//
   const buyHandler = () => {
     fetch(`/update/${_id}`, {
       method: "PATCH",

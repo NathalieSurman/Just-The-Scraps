@@ -9,8 +9,9 @@ const Profile = () => {
   const [inputValue, setInputValue] = useState("");
   const [formData, setFormData] = useState({});
   const [itemState, setItemState] = useState(null);
-
   const [images, setImages] = useState([]);
+  const { _id } = useParams();
+
   //we want an event to see what the user put for the location in the input
   const handleChange = (e) => {
     setFormData({ ...formData, location: e.target.value });
@@ -59,7 +60,7 @@ const Profile = () => {
         imageSrc: images[0].url.url,
         isAvailable: true,
         user: user,
-      }), //not sure here
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -77,16 +78,26 @@ const Profile = () => {
   };
 
   // //--- User can DELETE their fabric item post ----//
-  // const deleteItem = () => {
-  //   // removing(product);
-  //   fetch(`/delete-post//${_id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  // };
+  const deleteItem = () => {
+    // removing(product);
+    fetch(`/delete-post/${_id}`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        category,
+        size,
+        location,
+        imageSrc: images[0].url.url,
+        isAvailable: true,
+        user: user,
+      }),
+    });
+  };
+
   if (isLoading) {
     return <div>Loading ...</div>;
   }

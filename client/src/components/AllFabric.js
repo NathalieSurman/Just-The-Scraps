@@ -13,49 +13,71 @@ const AllFabric = () => {
   useEffect(() => {
     fetch("/fabric").then((res) => {
       res.json().then((data) => {
-        if (Object.values(filterFabrics).length === 0) {
-          setAllFabrics(data.data);
-        }
+        setAllFabrics(data.data);
 
         setLocations([...new Set(data.data.map((item) => item.location))]);
         setSizes([...new Set(data.data.map((item) => item.size))]);
         setCategories([...new Set(data.data.map((item) => item.category))]);
-
-        if (Object.values(filterFabrics).length === 1) {
-          const filter = Object.values(filterFabrics)[0];
-          setAllFabrics(
-            data.data.filter((item) => item[filter] === filterFabrics[filter])
-          );
-        } else {
-          if (filterFabrics.location) {
-            const filter2 = Object.values(filterFabrics)[1];
-            setAllFabrics(
-              allFabrics.filter(
-                (item) => item[filter2] === filterFabrics[filter2]
-              )
-            );
-          }
-          if (filterFabrics.category) {
-            const filte3 = Object.values(filterFabrics)[2];
-            setAllFabrics(
-              allFabrics.filter(
-                (item) => item[filte3] === filterFabrics[filte3]
-              )
-            );
-          }
-        }
       });
+      // .then(() => {
+      //   if (filterFabrics.size) {
+      //     const sizeFilter = allFabrics.filter(
+      //       (item) => item.size === filterFabrics.size
+      //     );
+      //     setAllFabrics(sizeFilter);
+      //   }
+      // })
+      // .then(() => {
+      //   const categoryFilter = allFabrics.filter(
+      //     (item) => item.category === filterFabrics.category
+      //   );
+      //   setAllFabrics(categoryFilter);
+      // })
+      // .then(() => {
+      //   const locationFilter = allFabrics.filter(
+      //     (item) => item.location === filterFabrics.location
+      //   );
+      //   setAllFabrics(locationFilter);
+      // });
     });
   }, [filterFabrics]);
 
+  // let filteredData = allFabrics;
+  // if (allFabrics && Object.values(filterFabrics).length) {
+  //   const keys = Object.keys(filterFabrics);
+
+  //   console.log("keys", keys);
+  //   Object.values(filterFabrics).forEach((filter, index) => {
+  //     filteredData = allFabrics.filter((item) => {
+  //       return item[keys[index]] === filterFabrics[keys[index]];
+  //     });
+  //   });
+  // }
+  //setAllFabrics(filteredData);
+
+  // console.log("filteredData", filteredData);
+  // console.log("filterFabrics", filterFabrics);
+
   const handleChange = (e) => {
+    // if (e.target.name === "location") {
+    //   console.log("here");
+
+    //   const test = allFabrics.filter(
+    //     (item) => item.location === e.target.value
+    //   );
+
+    //   console.log("test", test);
+    //   setAllFabrics(
+    //     allFabrics.filter((item) => item.location === e.target.value[0])
+    //   );
+    // }
     setFilterFabrics({
       ...filterFabrics,
       [e.target.name]: [e.target.value][0],
     });
   };
 
-  console.log("allFabrics", allFabrics);
+  console.log("filterFabrics", filterFabrics);
 
   return (
     <Container>
@@ -124,6 +146,7 @@ const AllFabric = () => {
                     key={fabric._id}
                     item={fabric}
                     img={fabric.imageSrc}
+                    filterFabrics={filterFabrics}
                   />
                 );
               })}
