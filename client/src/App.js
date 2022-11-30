@@ -8,6 +8,7 @@ import FabricDetail from "./components/FabricDetail";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
 import FiberCategory from "./components/FiberCategory";
+import About from "./components/About";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/fabric" element={<AllFabric />} />
+          <Route path="/about" element={<About />} />
           <Route path="/fabric/:_id" element={<FabricDetail />} />
           <Route path="/categories" element={<FiberCategory />} />
         </Routes>

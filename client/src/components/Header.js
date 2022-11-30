@@ -12,11 +12,8 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
-          <SearchContainer>
-            <Input />
-            <TfiSearch style={{ color: "#d6ad60", fontSize: 16 }} />
-          </SearchContainer>
+          {/* <Language>EN</Language> */}
+          <StyledLink to="/about">About us</StyledLink>
         </Left>
         <Center>
           <LogoLink to="/mainpage">Just The Scraps.</LogoLink>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import ImageUpload from "./ImageUpload";
 import styled from "styled-components";
@@ -10,7 +10,23 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [itemState, setItemState] = useState(null);
   const [images, setImages] = useState([]);
+  const [allFabrics, setAllFabrics] = useState("");
+  const [usersItem, setUsersItem] = useState("");
   const { _id } = useParams();
+
+  //-- Here we want When user creates a post, it will be reflected in the user’s profile ---//
+  useEffect(() => {
+    fetch("/fabric").then((res) =>
+      res.json().then((data) => {
+        data.data.forEach((users) => {
+          if (users.name === user) {
+            setAllFabrics(users);
+          }
+        });
+        setUsersItem(data.data);
+      })
+    );
+  }, []);
 
   //we want an event to see what the user put for the location in the input
   const handleChange = (e) => {
@@ -145,8 +161,8 @@ const Profile = () => {
             >
               <optgroup label="fabric type">
                 <option value="natural">Natural fibers</option>
-                <option value="mix-fiber">Mix fibers</option>
-                <option value="synthetic">Synthetic fiber</option>
+                <option value="mix fibers">Mix fibers</option>
+                <option value="synthetic fiber">Synthetic fiber</option>
               </optgroup>
             </Select>
           </div>
@@ -159,6 +175,17 @@ const Profile = () => {
   );
 };
 
+{
+  /* <div className="mapDiv">
+          {usersItem.map((item) => {
+            return (
+              <div>
+                <div>{item.user.name}</div>
+              </div>
+            );
+          })}
+        </div> */
+}
 export default Profile;
 
 const Container = styled.div``;

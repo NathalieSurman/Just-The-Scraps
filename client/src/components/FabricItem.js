@@ -1,28 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const FabricItem = ({ item, img, filterFabrics }) => {
-  if (
-    !filterFabrics.size &&
-    !filterFabrics.location &&
-    !filterFabrics.category
-  ) {
-    return (
-      <Container>
-        <ItemDiv to={`/fabric/${item._id}`}>
-          <ContentBox>
-            <ItemImg src={img} alt="fabric" />
-            <ItemName>{item.category}</ItemName>
-            <Location>{item.location}</Location>
-            <ItemSize>{item.size}</ItemSize>
-          </ContentBox>
-        </ItemDiv>
-      </Container>
-    );
-  }
-  return item.size === filterFabrics.size &&
-    item.location === filterFabrics.location &&
-    item.category === filterFabrics.category ? (
+const FabricItem = ({ item, img }) => {
+  return (
     <Container>
       <ItemDiv to={`/fabric/${item._id}`}>
         <ContentBox>
@@ -33,7 +13,7 @@ const FabricItem = ({ item, img, filterFabrics }) => {
         </ContentBox>
       </ItemDiv>
     </Container>
-  ) : null;
+  );
 };
 
 export default FabricItem;
