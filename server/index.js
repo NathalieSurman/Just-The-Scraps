@@ -16,7 +16,12 @@ const {
 
 //--- This is the endpoint for users to create a Post of an item, to be able to "buy" what is in post and
 //-- We want the post of the product to update. Finally we want the user to be able to delete their item------//
-const { createPost, postUpdate, deletePost } = require("./handlers/userpost");
+const {
+  createPost,
+  postUpdate,
+  deletePost,
+  getUserPosts,
+} = require("./handlers/userpost");
 //--- -==========================================================================------//
 
 const { addCheckout } = require("./handlers/checkout");
@@ -47,6 +52,8 @@ express()
 
   // -- Endpoint for the checkout item -- //
   .post("/checkout", addCheckout) // NOT SURE Might not need
+
+  .get("/user-post/:name", getUserPosts)
 
   .listen(PORT, () => {
     console.log(`listening on PORT ${PORT}`);

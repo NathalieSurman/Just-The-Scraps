@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ImageUpload from "./ImageUpload";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import FabricItem from "./FabricItem";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -12,21 +13,38 @@ const Profile = () => {
   const [images, setImages] = useState([]);
   const [allFabrics, setAllFabrics] = useState("");
   const [usersItem, setUsersItem] = useState("");
+  const [userFabrics, setUserFabrics] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(false);
   const { _id } = useParams();
 
   //-- Here we want When user creates a post, it will be reflected in the user’s profile ---//
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetch("/fabric").then((res) =>
+  //       res.json().then((data) => {
+  //         data.data.forEach((users) => {
+  //           if (users.name === user) {
+  //             setAllFabrics(users);
+  //           }
+  //         });
+  //         setUsersItem(data.data);
+  //       })
+  //     );
+  //   }
+  // }, []);
+
+  if (isAuthenticated) {
+    window.sessionStorage.setItem("user", user.name);
+  }
+
   useEffect(() => {
-    fetch("/fabric").then((res) =>
-      res.json().then((data) => {
-        data.data.forEach((users) => {
-          if (users.name === user) {
-            setAllFabrics(users);
-          }
-        });
-        setUsersItem(data.data);
-      })
-    );
-  }, []);
+    const userName = window.sessionStorage.getItem("user");
+    fetch(`/user-post/${userName}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFabrics(data.data);
+      });
+  }, [isDeleted]);
 
   //we want an event to see what the user put for the location in the input
   const handleChange = (e) => {
@@ -80,12 +98,10 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        // if (data.status === 200) {
-        //   window.sessionStorage.setItem("postSubmit", inputValue); //not sure here
-        // } else {
-        //   window.alert("Fill all the form !");
-        // }
+        console.log("post", data);
+        if (data.status === 200) {
+          setIsDeleted(!isDeleted);
+        }
       })
 
       .catch((error) => {
@@ -94,27 +110,26 @@ const Profile = () => {
   };
 
   // //--- User can DELETE their fabric item post ----//
-  const deleteItem = () => {
-    // removing(product);
+
+  const handleDelete = (_id) => {
     fetch(`/delete-post/${_id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
-
-      body: JSON.stringify({
-        category,
-        size,
-        location,
-        imageSrc: images[0].url.url,
-        isAvailable: true,
-        user: user,
-      }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(" here test data", data);
+        if (data.status === 204) {
+          setIsDeleted(!isDeleted);
+        }
+      });
   };
 
-  if (isLoading) {
+  if (isLoading && !isAuthenticated) {
     return <div>Loading ...</div>;
   }
 
@@ -170,6 +185,22 @@ const Profile = () => {
 
           <Button type="submit">Post Fabric</Button>
         </ProductForm>
+        <div>
+          {userFabrics.map((fabric) => {
+            return (
+              <>
+                <FabricItem item={fabric} img={fabric.imageSrc} />
+                <button
+                  onClick={() => {
+                    handleDelete(fabric._id);
+                  }}
+                >
+                  Delete
+                </button>
+              </>
+            );
+          })}
+        </div>
       </Container>
     )
   );

@@ -29,48 +29,48 @@ const createPost = async (req, res) => {
     //----- add an item in the collection "fabric"-----//
     await db.collection("fabric").insertOne(postSubmit);
 
-    //we want to find the fabric post
-    const fabricPosts = await db
-      .collection("fabric")
-      .findOne({ _id: res.body._id });
+    // //we want to find the fabric post
+    // const fabricPosts = await db
+    //   .collection("fabric")
+    //   .findOne({ _id: res.body._id });
 
-    if (fabricPosts.posts) {
-      fabricPosts.posts.push({
-        user: user,
-        post: post,
-        image: image,
-        location: location,
-        size: size,
-        category: category,
-      });
+    // if (fabricPosts.posts) {
+    //   fabricPosts.posts.push({
+    //     user: user,
+    //     post: post,
+    //     image: image,
+    //     location: location,
+    //     size: size,
+    //     category: category,
+    //   });
 
-      await db
-        .collection("fabric")
-        .updateOne(
-          { _id: req.body._id },
-          { $set: { posts: fabricPosts, posts } }
-        );
+    //   await db
+    //     .collection("fabric")
+    //     .updateOne(
+    //       { _id: req.body._id },
+    //       { $set: { posts: fabricPosts, posts } }
+    //     );
 
-      return res.status(200).json({ status: 200, data: postSubmit });
-    } else {
-      await db.collection("fabric").updateOne(
-        { _id: req.body._id },
-        {
-          $set: {
-            posts: [
-              {
-                user: user,
-                post: post,
-                image: image,
-                location: location,
-                size: size,
-                category: category,
-              },
-            ],
-          },
-        }
-      );
-    }
+    return res.status(200).json({ status: 200, data: postSubmit });
+    // } else {
+    //   await db.collection("fabric").updateOne(
+    //     { _id: req.body._id },
+    //     {
+    //       $set: {
+    //         posts: [
+    //           {
+    //             user: user,
+    //             post: post,
+    //             image: image,
+    //             location: location,
+    //             size: size,
+    //             category: category,
+    //           },
+    //         ],
+    //       },
+    //     }
+    //   );
+    // }
   } catch (err) {
     return res.status(500).json({ status: 500, message: err.message });
   }
@@ -137,8 +137,35 @@ const deletePost = async (req, res) => {
   }
   client.close();
 };
+
+// get user posts
+const getUserPosts = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+
+  await client.connect();
+
+  try {
+    const dbName = "justfabrics";
+    const db = client.db(dbName);
+
+    const name = req.params.name;
+
+    const allFabrics = await db.collection("fabric").find().toArray();
+
+    const userFabrics = allFabrics.filter(
+      (fabric) => fabric.user && fabric.user.name === name
+    );
+
+    res.status(200).json({ status: 200, data: userFabrics });
+  } catch (err) {
+    return res.status(500).json({ status: 500, message: err.message });
+  }
+  client.close();
+};
+
 module.exports = {
   createPost,
   deletePost,
   postUpdate,
+  getUserPosts,
 };
