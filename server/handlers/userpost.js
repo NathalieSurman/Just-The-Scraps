@@ -51,7 +51,7 @@ const createPost = async (req, res) => {
     //       { $set: { posts: fabricPosts, posts } }
     //     );
 
-    return res.status(200).json({ status: 200, data: postSubmit });
+    res.status(200).json({ status: 200, data: postSubmit });
     // } else {
     //   await db.collection("fabric").updateOne(
     //     { _id: req.body._id },

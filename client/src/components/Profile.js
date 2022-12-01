@@ -11,11 +11,11 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [itemState, setItemState] = useState(null);
   const [images, setImages] = useState([]);
-  const [allFabrics, setAllFabrics] = useState("");
-  const [usersItem, setUsersItem] = useState("");
+  // const [allFabrics, setAllFabrics] = useState("");
+  // const [usersItem, setUsersItem] = useState("");
   const [userFabrics, setUserFabrics] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
-  const { _id } = useParams();
+  // const { _id } = useParams();
 
   //-- Here we want When user creates a post, it will be reflected in the user’s profile ---//
   // useEffect(() => {
@@ -223,8 +223,8 @@ const Container = styled.div`
 `;
 
 const CardInfo = styled.div`
-  display: flex;
-  gap: 250px;
+  /* display: flex;
+  gap: 250px; */
 `;
 const Wrapper = styled.div`
   :before {
