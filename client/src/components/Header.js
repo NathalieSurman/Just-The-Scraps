@@ -48,24 +48,6 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const SearchContainer = styled.div`
-  border: 0.5px solid #d6ad60;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-`;
-
-const Input = styled.input`
-  border: none;
-`;
-
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-  color: #d6ad60;
-`;
-
 const LogoLink = styled(Link)`
   font-weight: bold;
   color: #d6ad60;

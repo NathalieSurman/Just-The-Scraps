@@ -8,8 +8,8 @@ const About = () => {
       <Container>
         <Box>
           <p>
-            I made this page for people who need at website that was just about
-            fabrics. What I mean is for those of us who have scraps of fabrics
+            I made this page for people who need at website that is just about
+            fabrics.This Website is for those of us who have scraps of fabrics
             that we don't know what to do with or just rolls of fabrics we also
             don't know what to do with. But we don't want to throw away since it
             would cause harm to the environment. This is also a site for those

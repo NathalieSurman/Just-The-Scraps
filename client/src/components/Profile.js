@@ -136,116 +136,165 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <Container>
-        <UserCard>
-          <ImgContainer>
-            <Img src={user.picture} alt={user.name} />
-          </ImgContainer>
-          <Name>{user.name}</Name>
-          <p>{user.email}</p>
-        </UserCard>
-        <ProductForm onSubmit={handleSubmit}>
-          <Title>Add fabric item</Title>
-          <div>
-            <h3>Fill in Fabric Info</h3>
-            <Input
-              type="text"
-              placeholder="Enter meeting location"
-              onChange={handleChange}
-            />
-            <Label for="size">Size Fabric: </Label>
-            <Select
-              id="sizes"
-              value={inputValue.id}
-              onChange={(e) => {
-                handleSelect(e);
-              }}
-            >
-              <optgroup label="Size">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </optgroup>
-            </Select>{" "}
-            <Label for="fabric type">Fabric Type: </Label>
-            <Select
-              id="category"
-              value={inputValue.id}
-              onChange={(e) => {
-                handleSelected(e);
-              }}
-            >
-              <optgroup label="fabric type">
-                <option value="natural">Natural fibers</option>
-                <option value="mix fibers">Mix fibers</option>
-                <option value="synthetic fiber">Synthetic fiber</option>
-              </optgroup>
-            </Select>
-          </div>
-          <ImageUpload images={images} setImages={setImages} />
+        <Wrapper>
+          <UserCard>
+            <ImgContainer>
+              <Img src={user.picture} alt={user.name} />
+            </ImgContainer>
+            <Name>{user.name}</Name>
+            <p>{user.email}</p>
+          </UserCard>
+          <ProductForm onSubmit={handleSubmit}>
+            <Title>Add fabric item</Title>
+            <ProductInfo>
+              <h3>Fill in Fabric Info</h3>
+              <Input
+                type="text"
+                placeholder="Enter meeting location"
+                onChange={handleChange}
+              />
+              <Label for="size">Size Fabric: </Label>
+              <Select
+                id="sizes"
+                value={inputValue.id}
+                onChange={(e) => {
+                  handleSelect(e);
+                }}
+              >
+                <optgroup label="Size">
+                  <option value="">Pick a size</option>
+                  <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
+                </optgroup>
+              </Select>{" "}
+              <Label for="fabric type">Fabric Type: </Label>
+              <Select
+                id="category"
+                value={inputValue.id}
+                onChange={(e) => {
+                  handleSelected(e);
+                }}
+              >
+                <optgroup label="fabric type">
+                  <option value="">Pick fabric type</option>
+                  <option value="natural">Natural fibers</option>
+                  <option value="mix fibers">Mix fibers</option>
+                  <option value="synthetic fiber">Synthetic fiber</option>
+                </optgroup>
+              </Select>
+            </ProductInfo>
+            <ImageUpload images={images} setImages={setImages} />
 
-          <Button type="submit">Post Fabric</Button>
-        </ProductForm>
-        <div>
-          {userFabrics.map((fabric) => {
-            return (
-              <>
-                <FabricItem item={fabric} img={fabric.imageSrc} />
-                <button
-                  onClick={() => {
-                    handleDelete(fabric._id);
-                  }}
-                >
-                  Delete
-                </button>
-              </>
-            );
-          })}
-        </div>
+            <Button type="submit">Post Fabric</Button>
+          </ProductForm>
+          <div>
+            <h2>Here is your posted fabric items:</h2>
+            {userFabrics.map((fabric) => {
+              return (
+                <>
+                  <FabricItem item={fabric} img={fabric.imageSrc} />
+                  <DeleteButton
+                    onClick={() => {
+                      handleDelete(fabric._id);
+                    }}
+                  >
+                    Delete
+                  </DeleteButton>
+                </>
+              );
+            })}
+          </div>
+        </Wrapper>
       </Container>
     )
   );
 };
 
-{
-  /* <div className="mapDiv">
-          {usersItem.map((item) => {
-            return (
-              <div>
-                <div>{item.user.name}</div>
-              </div>
-            );
-          })}
-        </div> */
-}
 export default Profile;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 0px;
+  margin: 0px;
+
+  align-items: center;
+
+  position: relative;
+`;
+
+const Wrapper = styled.div`
+  :before {
+    content: "";
+    background-image: url("/cover2.jpg");
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.6;
+  }
+`;
 const UserCard = styled.div`
+  margin-top: 10px;
+  height: 450px;
+  width: 300px;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-  align-items: flex-start;
-  border: 1px solid #420000;
-  border-radius: 3px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  width: 200px;
-  min-height: 300px;
-  max-height: 300px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  text-decoration: none;
+  border: solid thin #122620;
+  color: #122620;
+  position: relative;
+  background-image: url("/pic.jpg");
+  border-radius: 20px;
+  overflow: hidden;
+  &::before {
+    content: "FABRIC";
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #d6e4e5;
+    transform: skewY(345deg);
+    transition: 0.5s;
+  }
+  &:hover::before {
+    top: -70%;
+    transform: skewY(390deg);
+  }
+
+  &::after {
+    content: "FABRIC";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+  }
 `;
 const Img = styled.img`
-  width: 180px;
   height: auto;
-  padding: 3px 3px 15px 3px;
-  border: 2px solid #eeeeee;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  margin: 5px auto 10px auto;
+  width: 255px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   &:hover {
-    transform: scale(1.2);
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
   }
 `;
 const Title = styled.h2`
@@ -253,31 +302,80 @@ const Title = styled.h2`
   margin-bottom: 10px;
 `;
 const Name = styled.h2`
-  position: relative;
-  height: auto;
-  background-color: white;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  margin: 10px auto 10px auto;
-  width: 75%;
-  padding: 10px 5px 10px 5px;
-  text-align: center;
-  font-size: 0.8em;
-  color: #101010;
+  background: rgba(255, 255, 255, 0.33);
+  margin-top: 10px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  color: #122620;
+  text-decoration: none;
+  transition: 0.3s;
+
+  letter-spacing: 1px;
+
+  :hover {
+    color: #f4ebd0;
+  }
 `;
 const ImgContainer = styled.div``;
 
 const ProductForm = styled.form`
-  margin-left: 30%;
-  max-width: 500px;
+  /* margin-left: 30%; */
+
+  /* padding: 10px 20px;
+  background: #f4f7f8;
+  margin: 10px auto; */
+
   padding: 10px 20px;
-  background: #f4f7f8;
-  margin: 10px auto;
-  padding: 20px;
-  background: #f4f7f8;
-  border-radius: 8px;
+
+  //NEW here
+  margin-top: 10px;
+  /* height: 450px;
+  width: 300px; */
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  text-decoration: none;
+  border: solid thin #122620;
+  color: #122620;
+  position: relative;
+  background-image: url("/pic.jpg");
+  border-radius: 20px;
+  overflow: hidden;
+  &::before {
+    content: "FABRIC";
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #d6e4e5;
+    transform: skewY(345deg);
+    transition: 0.5s;
+  }
+  &:hover::before {
+    top: -70%;
+    transform: skewY(390deg);
+  }
+
+  &::after {
+    content: "FABRIC";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
+const ProductInfo = styled.div`
+  z-index: 1;
+`;
 const Input = styled.input`
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -325,7 +423,7 @@ const Select = styled.select`
 
 const Button = styled.button`
   position: relative;
-  display: block;
+  /* display: block; */
   padding: 19px 39px 18px 39px;
   color: #fff;
   margin: 0 auto;
@@ -333,11 +431,21 @@ const Button = styled.button`
   font-size: 18px;
   text-align: center;
   font-style: normal;
-  width: 100%;
+  width: 300px;
   border: 1px solid #7c99ac;
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
   &:hover {
     background: #7c99ac;
   }
+`;
+const DeleteButton = styled.button`
+  padding: 10px 30px;
+  color: #f4ebd0;
+  text-decoration: none;
+  border: none;
+  background: #122620;
+  border-radius: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
