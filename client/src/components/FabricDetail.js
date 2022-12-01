@@ -48,9 +48,13 @@ const FabricDetail = () => {
             <Size>
               size:<span> {item.size}</span>
             </Size>
-            <CartButton disabled={!item.isAvailable} onClick={buyHandler}>
-              I want this
-            </CartButton>
+            {!item.isAvailable ? (
+              <CartButton disabled={!item.isAvailable} onClick={buyHandler}>
+                No Longer Available
+              </CartButton>
+            ) : (
+              <CartButton onClick={buyHandler}>I want this</CartButton>
+            )}
           </ItemInfo>
         </Card>
       )}
@@ -164,8 +168,13 @@ const CartButton = styled.button`
   border-radius: 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: 0.3s;
   :disabled {
     cursor: not-allowed;
     background: red;
+  }
+  :hover {
+    background: #f4ebd0;
+    color: #122620;
   }
 `;

@@ -4,19 +4,26 @@ import styled from "styled-components";
 const About = () => {
   return (
     <TopDiv>
-      <Title>About us</Title>
-      <Container>
+      <Content>
         <Box>
-          <p>
-            I made this page for people who need at website that is just about
-            fabrics.This Website is for those of us who have scraps of fabrics
-            that we don't know what to do with or just rolls of fabrics we also
-            don't know what to do with. But we don't want to throw away since it
-            would cause harm to the environment. This is also a site for those
-            of us who want to get scraps of fabrics for our fun projects.
-          </p>
+          <PreTitle>About us</PreTitle>
+          <Title>Who is this for?</Title>
+          <Description>
+            {" "}
+            This is for the sewer lovers who don't know what to do with their
+            extra fabrics or scraps of fabrics and for those of us love working
+            with scraps of fabric. This website helps both types, whether you
+            just want to give away your scraps of fabric or you want to get
+            those fabrics, this is the website to do so. Let's not waste fabric
+            and find new ways to uses our materials. This Market website is
+            meant to be free and please choose locations that you feel
+            comfortable to meet.
+          </Description>
         </Box>
-      </Container>
+        <FigureImg>
+          <Img src="/about.jpg" />
+        </FigureImg>
+      </Content>
     </TopDiv>
   );
 };
@@ -28,39 +35,82 @@ const TopDiv = styled.div`
     url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
     0 0 no-repeat;
   background-size: cover;
-  /* background-repeat: no-repeat; */
   z-index: -1;
-  /* width: 100vw; */
-  height: 100vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  /* height: 100vh; */
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const Content = styled.div`
+  max-width: 1110px;
+  min-height: 600px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+`;
+
+const Box = styled.article`
+  z-index: 1;
+  color: #d9daf5;
+  background-color: rgba(white, 0.2);
+  padding: 40px;
+  max-width: 620px;
+  margin-top: 100px;
+  width: 70%;
+  backdrop-filter: blur(8px);
+  animation: text 0.8s 0.6s ease backwards;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    background-color: rgba(white, 0.5);
+    top: 0;
+    left: 0;
+  }
 `;
 
 const Title = styled.h1`
-  margin: 0;
-  color: white;
-  text-align: center;
+  text-transform: uppercase;
+  font-weight: 200;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  font-size: 40px;
+  color: #637498;
+`;
+const PreTitle = styled.p`
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  color: #475779;
 `;
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Description = styled.p`
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  line-height: 26px;
+`;
+const Img = styled.img`
+  height: 480px;
+  width: 70%;
+  transform: translatey(80px);
+  right: -6%;
+  border-radius: 3px;
 `;
 
-const Box = styled.div`
-  width: 570px;
-  height: 210px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-
-  p {
-    letter-spacing: 1px;
-    padding: 10px;
-  }
+const FigureImg = styled.figure`
+  right: 0;
+  max-width: 600px;
+  width: 60%;
+  height: 600px;
+  transform: translatey(100px);
+  position: absolute;
+  overflow: hidden;
 `;
