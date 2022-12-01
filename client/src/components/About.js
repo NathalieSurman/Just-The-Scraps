@@ -24,18 +24,21 @@ const About = () => {
 export default About;
 
 const TopDiv = styled.div`
-  background-image: url("/bg3.jpg");
+  background: #344557
+    url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
+    0 0 no-repeat;
   background-size: cover;
   /* background-repeat: no-repeat; */
   z-index: -1;
   /* width: 100vw; */
-  height: 95vh;
+  height: 100vh;
   /* display: flex;
   justify-content: center;
   align-items: center; */
 `;
 
 const Title = styled.h1`
+  margin: 0;
   color: white;
   text-align: center;
 `;

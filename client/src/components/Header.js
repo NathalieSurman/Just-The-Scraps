@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { TfiSearch } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  if (window.location.pathname === "/") {
+  const { user, isAuthenticated } = useAuth0();
+  if (!isAuthenticated) {
     return null;
   }
   return (
@@ -31,11 +33,13 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
+  margin: 0;
   height: 60px;
   background-color: #122620;
 `;
 
 const Wrapper = styled.div`
+  margin: 0;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;

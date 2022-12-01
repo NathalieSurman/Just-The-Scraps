@@ -33,4 +33,5 @@ export default MainPage;
 
 const Container = styled.div`
   /* background-color: #122620; */
+  margin: 0;
 `;

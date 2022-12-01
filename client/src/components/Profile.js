@@ -137,57 +137,59 @@ const Profile = () => {
     isAuthenticated && (
       <Container>
         <Wrapper>
-          <UserCard>
-            <ImgContainer>
-              <Img src={user.picture} alt={user.name} />
-            </ImgContainer>
-            <Name>{user.name}</Name>
-            <p>{user.email}</p>
-          </UserCard>
-          <ProductForm onSubmit={handleSubmit}>
-            <Title>Add fabric item</Title>
-            <ProductInfo>
-              <h3>Fill in Fabric Info</h3>
-              <Input
-                type="text"
-                placeholder="Enter meeting location"
-                onChange={handleChange}
-              />
-              <Label for="size">Size Fabric: </Label>
-              <Select
-                id="sizes"
-                value={inputValue.id}
-                onChange={(e) => {
-                  handleSelect(e);
-                }}
-              >
-                <optgroup label="Size">
-                  <option value="">Pick a size</option>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
-                </optgroup>
-              </Select>{" "}
-              <Label for="fabric type">Fabric Type: </Label>
-              <Select
-                id="category"
-                value={inputValue.id}
-                onChange={(e) => {
-                  handleSelected(e);
-                }}
-              >
-                <optgroup label="fabric type">
-                  <option value="">Pick fabric type</option>
-                  <option value="natural">Natural fibers</option>
-                  <option value="mix fibers">Mix fibers</option>
-                  <option value="synthetic fiber">Synthetic fiber</option>
-                </optgroup>
-              </Select>
-            </ProductInfo>
-            <ImageUpload images={images} setImages={setImages} />
+          <CardInfo>
+            <UserCard>
+              <ImgContainer>
+                <Img src={user.picture} alt={user.name} />
+              </ImgContainer>
+              <Name>{user.name}</Name>
+              <p>{user.email}</p>
+            </UserCard>
+            <ProductForm onSubmit={handleSubmit}>
+              <Title>Add fabric item</Title>
+              <ProductInfo>
+                <h3>Fill in Fabric Info</h3>
+                <Input
+                  type="text"
+                  placeholder="Enter meeting location"
+                  onChange={handleChange}
+                />
+                <Label for="size">Size Fabric: </Label>
+                <Select
+                  id="sizes"
+                  value={inputValue.id}
+                  onChange={(e) => {
+                    handleSelect(e);
+                  }}
+                >
+                  <optgroup label="Size">
+                    <option value="">Pick a size</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </optgroup>
+                </Select>{" "}
+                <Label for="fabric type">Fabric Type: </Label>
+                <Select
+                  id="category"
+                  value={inputValue.id}
+                  onChange={(e) => {
+                    handleSelected(e);
+                  }}
+                >
+                  <optgroup label="fabric type">
+                    <option value="">Pick fabric type</option>
+                    <option value="natural">Natural fibers</option>
+                    <option value="mix fibers">Mix fibers</option>
+                    <option value="synthetic fiber">Synthetic fiber</option>
+                  </optgroup>
+                </Select>
+              </ProductInfo>
+              <ImageUpload images={images} setImages={setImages} />
 
-            <Button type="submit">Post Fabric</Button>
-          </ProductForm>
+              <Button type="submit">Post Fabric</Button>
+            </ProductForm>
+          </CardInfo>
           <div>
             <h2>Here is your posted fabric items:</h2>
             {userFabrics.map((fabric) => {
@@ -216,12 +218,14 @@ export default Profile;
 const Container = styled.div`
   padding: 0px;
   margin: 0px;
-
   align-items: center;
-
   position: relative;
 `;
 
+const CardInfo = styled.div`
+  display: flex;
+  gap: 250px;
+`;
 const Wrapper = styled.div`
   :before {
     content: "";
@@ -238,6 +242,7 @@ const Wrapper = styled.div`
 `;
 const UserCard = styled.div`
   margin-top: 10px;
+  margin-left: 10px;
   height: 450px;
   width: 300px;
   display: flex;

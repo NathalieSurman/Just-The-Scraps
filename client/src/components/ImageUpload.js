@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ImageUpload = ({ images, setImages }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+
   //const [images, setImages] = useState([]);
   const [imagesToRemove, setImagesToRemove] = useState(null);
 

@@ -4,6 +4,7 @@ import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri";
 
 const slideStyles = {
   //   width: "800px",
+  margin: 0,
   height: "790px",
   //   borderRadius: "10px",
   backgroundSize: "cover",
