@@ -179,7 +179,7 @@ const Profile = () => {
                 >
                   <optgroup label="fabric type">
                     <option value="">Pick fabric type</option>
-                    <option value="natural">Natural fibers</option>
+                    <option value="natural fiber">Natural fibers</option>
                     <option value="mix fibers">Mix fibers</option>
                     <option value="synthetic fiber">Synthetic fiber</option>
                   </optgroup>
@@ -223,8 +223,8 @@ const Container = styled.div`
 `;
 
 const CardInfo = styled.div`
-  /* display: flex;
-  gap: 250px; */
+  display: flex;
+  gap: 250px;
 `;
 const Wrapper = styled.div`
   :before {
@@ -440,6 +440,7 @@ const Button = styled.button`
   border: 1px solid #7c99ac;
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
+  z-index: 10;
   &:hover {
     background: #7c99ac;
   }
@@ -450,7 +451,10 @@ const DeleteButton = styled.button`
   text-decoration: none;
   border: none;
   background: #122620;
-  border-radius: 13px;
+  border-radius: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  &:hover {
+    background: #f61b1b;
+  }
 `;
