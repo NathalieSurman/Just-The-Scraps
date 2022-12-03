@@ -10,14 +10,11 @@ const About = () => {
           <Title>Who is this for?</Title>
           <Description>
             {" "}
-            This is for the sewer lovers who don't know what to do with their
+            This is for the sewing lovers who don't know what to do with their
             extra fabrics or scraps of fabrics and for those of us love working
-            with scraps of fabric. This website helps both types, whether you
-            just want to give away your scraps of fabric or you want to get
-            those fabrics, this is the website to do so. Let's not waste fabric
-            and find new ways to uses our materials. This Market website is
-            meant to be free and please choose locations that you feel
-            comfortable to meet.
+            with scraps of fabric.Let's not waste fabric and find new ways to
+            uses our materials. This market website is meant to be free and
+            please choose locations that you feel comfortable to meet.
           </Description>
         </Box>
         <FigureImg>
@@ -31,9 +28,10 @@ const About = () => {
 export default About;
 
 const TopDiv = styled.div`
-  background: #344557
+  /* background: #344557
     url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
-    0 0 no-repeat;
+    0 0 no-repeat; */
+  background-color: #122620;
   background-size: cover;
   z-index: -1;
   /* height: 100vh; */
@@ -55,7 +53,7 @@ const Content = styled.div`
 
 const Box = styled.article`
   z-index: 1;
-  color: #d9daf5;
+  color: #d6ad60;
   background-color: rgba(white, 0.2);
   padding: 40px;
   max-width: 620px;
@@ -82,14 +80,14 @@ const Title = styled.h1`
   letter-spacing: 2px;
   margin-bottom: 24px;
   font-size: 40px;
-  color: #637498;
+  color: #d6ad60;
 `;
 const PreTitle = styled.p`
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 16px;
-  color: #475779;
+  color: #d6ad60;
 `;
 
 const Description = styled.p`

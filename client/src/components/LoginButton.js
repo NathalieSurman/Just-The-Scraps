@@ -9,8 +9,9 @@ const LoginButton = () => {
   return (
     <Container>
       <DivButton>
-        <Title>Please Login In First</Title>
-        <Button onClick={() => loginWithRedirect()}>Login</Button>
+        <Img src="/scissors.png" />
+
+        <Button onClick={() => loginWithRedirect()}>Please Login</Button>
       </DivButton>
     </Container>
   );
@@ -28,11 +29,12 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #122620;
 
   //NEW
-  background: #344557
+  /* background: #344557
     url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
-    0 0 no-repeat;
+    0 0 no-repeat; */
   background-size: cover;
   &:after {
     content: "";
@@ -44,8 +46,8 @@ const Title = styled.h1`
   display: block;
   text-transform: uppercase;
   font-size: 1.5rem;
-  color: #1f4136;
-  text-shadow: -15px 5px 20px #d6ad60;
+  color: #d6ad60;
+  /* text-shadow: -15px 5px 20px #f4ca7c; */
   transition: all 0.5s ease-in-out;
 
   :hover {
@@ -55,6 +57,9 @@ const Title = styled.h1`
 const DivButton = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Button = styled.button`
@@ -112,4 +117,9 @@ const Button = styled.button`
       transform: translate3d(0, 0, -1em);
     }
   }
+`;
+
+const Img = styled.img`
+  width: 120px;
+  height: 120px;
 `;

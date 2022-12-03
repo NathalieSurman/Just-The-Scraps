@@ -259,7 +259,7 @@ const UserCard = styled.div`
   border-radius: 20px;
   overflow: hidden;
   &::before {
-    content: "FABRIC";
+    /* content: "PROFILE"; */
     position: absolute;
     top: -50%;
     width: 100%;
@@ -274,7 +274,7 @@ const UserCard = styled.div`
   }
 
   &::after {
-    content: "FABRIC";
+    /* content: "PROFILE"; */
     position: absolute;
     bottom: 0;
     left: 0;

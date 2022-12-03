@@ -13,7 +13,7 @@ const Carousel = () => {
     {
       url: "http://localhost:3000/slider2.jpg",
       title: "Fabric/Scraps",
-      subtitle: "Sewer lovers",
+      subtitle: "Sewing lovers",
       //   img: "Fabric",
     },
     {
@@ -56,7 +56,7 @@ const Carousel = () => {
 export default Carousel;
 
 const Carousel1 = styled.div`
-  width: 1710px;
+  width: 1714px;
   height: 790px;
   background-color: black;
   margin: 0;
@@ -72,20 +72,20 @@ const InnerCarousel = styled.div`
   .left {
     flex: 5%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #122620;
     backdrop-filter: blur(8px);
     display: grid;
     place-items: center;
-    color: white;
+    color: #d6ad60;
     cursor: pointer;
   }
   .right {
     flex: 5%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #122620;
     display: grid;
     place-items: center;
-    color: white;
+    color: #d6ad60;
     cursor: pointer;
   }
 
@@ -135,7 +135,7 @@ const SubTitle = styled.p`
   font-weight: 600;
 
   margin-bottom: 16px;
-  color: #0d1915;
+  color: #f9fcfb;
   z-index: 1;
 
   background-color: rgba(white, 0.2);
