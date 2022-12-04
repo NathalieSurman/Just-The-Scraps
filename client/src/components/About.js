@@ -92,7 +92,7 @@ const PreTitle = styled.p`
 
 const Description = styled.p`
   letter-spacing: 0.5px;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 26px;
 `;
 const Img = styled.img`
@@ -109,6 +109,6 @@ const FigureImg = styled.figure`
   width: 60%;
   height: 600px;
   transform: translatey(100px);
-  position: absolute;
+  /* position: absolute; */
   overflow: hidden;
 `;

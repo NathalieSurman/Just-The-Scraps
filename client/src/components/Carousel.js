@@ -133,9 +133,9 @@ const SubTitle = styled.p`
   ///
   text-transform: uppercase;
   font-weight: 600;
-
+  -webkit-text-stroke: 1px #122620;
   margin-bottom: 16px;
-  color: #f9fcfb;
+  color: #d6ad60;
   z-index: 1;
 
   background-color: rgba(white, 0.2);
