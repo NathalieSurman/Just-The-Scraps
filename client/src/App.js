@@ -19,7 +19,7 @@ import { useEffect } from "react";
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   let location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   if (isLoading) {
     return <div>Loading ...</div>;

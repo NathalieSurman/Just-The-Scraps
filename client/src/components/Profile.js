@@ -4,6 +4,7 @@ import ImageUpload from "./ImageUpload";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import FabricItem from "./FabricItem";
+import Popup from "./Popup";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -11,11 +12,10 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [itemState, setItemState] = useState(null);
   const [images, setImages] = useState([]);
-  // const [allFabrics, setAllFabrics] = useState("");
-  // const [usersItem, setUsersItem] = useState("");
+
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [userFabrics, setUserFabrics] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
-  // const { _id } = useParams();
 
   //-- Here we want When user creates a post, it will be reflected in the user’s profile ---//
   // useEffect(() => {
@@ -136,16 +136,22 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <Container>
+        <div className="bannerDiv">
+          <Banner src="/bannertest.jpg" />
+        </div>
         <Wrapper>
-          <CardInfo>
-            <UserCard>
-              <ImgContainer>
-                <Img src={user.picture} alt={user.name} />
-              </ImgContainer>
-              <Name>{user.name}</Name>
-              <p>{user.email}</p>
-            </UserCard>
-            <ProductForm onSubmit={handleSubmit}>
+          <UserCard>
+            <ImgContainer>
+              <UserImg src={user.picture} alt={user.name} />
+            </ImgContainer>
+            <UserName>{user.name}</UserName>
+            <p>{user.email}</p>
+            <div>
+              <PopBtn onClick={() => setButtonPopup(true)}>Create Post</PopBtn>
+            </div>
+          </UserCard>
+          <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            {/* <ProductForm onSubmit={handleSubmit}>
               <Title>Add fabric item</Title>
               <ProductInfo>
                 <h3>Fill in Fabric Info</h3>
@@ -188,14 +194,15 @@ const Profile = () => {
               <ImageUpload images={images} setImages={setImages} />
 
               <Button type="submit">Post Fabric</Button>
-            </ProductForm>
-          </CardInfo>
-          <div>
+            </ProductForm> */}
+          </Popup>
+          <>
             <h2>Here is your posted fabric items:</h2>
             {userFabrics.map((fabric) => {
               return (
                 <>
                   <FabricItem item={fabric} img={fabric.imageSrc} />
+
                   <DeleteButton
                     onClick={() => {
                       handleDelete(fabric._id);
@@ -206,7 +213,7 @@ const Profile = () => {
                 </>
               );
             })}
-          </div>
+          </>
         </Wrapper>
       </Container>
     )
@@ -219,15 +226,24 @@ const Container = styled.div`
   padding: 0px;
   margin: 0px;
   align-items: center;
-  position: relative;
+  /* max-width: 1500vw; */
+  background-image: url("/cover2.jpg");
+
+  background-size: cover;
 `;
 
 const CardInfo = styled.div`
   display: flex;
   gap: 250px;
 `;
+
+const Banner = styled.img`
+  width: 1714px;
+  height: 300px;
+`;
+
 const Wrapper = styled.div`
-  :before {
+  /* :before {
     content: "";
     background-image: url("/cover2.jpg");
     position: absolute;
@@ -238,80 +254,36 @@ const Wrapper = styled.div`
     right: 0;
     z-index: -1;
     opacity: 0.6;
-  }
+  } */
 `;
 const UserCard = styled.div`
-  margin-top: 10px;
-  margin-left: 10px;
-  height: 450px;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  text-decoration: none;
-  border: solid thin #122620;
-  color: #122620;
   position: relative;
-  background-image: url("/pic.jpg");
-  border-radius: 20px;
-  overflow: hidden;
-  &::before {
-    /* content: "PROFILE"; */
-    position: absolute;
-    top: -50%;
-    width: 100%;
-    height: 100%;
-    background: #d6e4e5;
-    transform: skewY(345deg);
-    transition: 0.5s;
-  }
-  &:hover::before {
-    top: -70%;
-    transform: skewY(390deg);
-  }
-
-  &::after {
-    /* content: "PROFILE"; */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-weight: 600;
-    font-size: 6em;
-    color: rgba(0, 0, 0, 0.1);
-  }
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  margin-left: 20px;
+  /* width: 1200px; */
+  /* border: 1px solid lightgrey; */
+  /* max-width: 500vw; */
 `;
-const Img = styled.img`
-  height: auto;
-  width: 255px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20px;
-  z-index: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-  &:hover {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-  }
+const UserImg = styled.img`
+  width: 128px;
+  height: 128px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  margin-top: -80px;
+  margin-bottom: 20px;
+  border: 4px solid #122620; //#d6ad60
+  margin-left: 10px;
 `;
 const Title = styled.h2`
   font-size: 1.4em;
   margin-bottom: 10px;
 `;
-const Name = styled.h2`
-  background: rgba(255, 255, 255, 0.33);
-  margin-top: 10px;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 18px;
+const UserName = styled.h2`
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 0;
   text-transform: uppercase;
   color: #122620;
   text-decoration: none;
@@ -323,7 +295,29 @@ const Name = styled.h2`
     color: #f4ebd0;
   }
 `;
-const ImgContainer = styled.div``;
+
+const PopBtn = styled.button`
+  padding: 8px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  color: #d6ad60;
+  background-color: #122620;
+  position: absolute;
+  right: 10px;
+  transition: 0.3s;
+
+  :hover {
+    color: #122620;
+    background-color: #d6ad60;
+  }
+`;
+const ImgContainer = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  padding-bottom: 15px; */
+`;
 
 const ProductForm = styled.form`
   /* margin-left: 30%; */
