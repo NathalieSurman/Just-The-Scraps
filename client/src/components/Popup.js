@@ -14,19 +14,6 @@ const Popup = (props) => {
   const [userFabrics, setUserFabrics] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
 
-  if (isAuthenticated) {
-    window.sessionStorage.setItem("user", user.name);
-  }
-
-  useEffect(() => {
-    const userName = window.sessionStorage.getItem("user");
-    fetch(`/user-post/${userName}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserFabrics(data.data);
-      });
-  }, [isDeleted]);
-
   //we want an event to see what the user put for the location in the input
   const handleChange = (e) => {
     setFormData({ ...formData, location: e.target.value });

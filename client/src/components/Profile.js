@@ -137,7 +137,7 @@ const Profile = () => {
     isAuthenticated && (
       <Container>
         <div className="bannerDiv">
-          <Banner src="/bannertest.jpg" />
+          <Banner src="/banner4.jpg" />
         </div>
         <Wrapper>
           <UserCard>
