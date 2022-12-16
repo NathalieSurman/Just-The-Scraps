@@ -4,8 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ImageUpload = ({ images, setImages }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  //const [images, setImages] = useState([]);
   const [imagesToRemove, setImagesToRemove] = useState(null);
 
   const handleRemoveImg = (imgObj) => {};
@@ -62,27 +60,27 @@ const Button = styled.button`
   position: relative;
   display: block;
   padding: 19px 39px 18px 39px;
-  color: #fff;
+  color: #d6ad60;
   margin: 0 auto;
-  background: #205375;
+  background: #122620;
   font-size: 18px;
   text-align: center;
   font-style: normal;
   width: 100%;
-  border: 1px solid #7c99ac;
+  border: 1px solid #d6ad60;
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
   &:hover {
-    background: #7c99ac;
+    background: #d6ad60;
+    color: #122620;
   }
 `;
 
 const Container = styled.div``;
-//<Button onClick={() => widgetRef.current.open()}>Upload Image</Button>
 
 const Img = styled.img`
   height: 250px;
   width: 250px;
-  /* border: 3px solid #292929; */
   border-radius: 10%;
 `;

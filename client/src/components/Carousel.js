@@ -60,6 +60,7 @@ const Carousel1 = styled.div`
   height: 790px;
   background-color: black;
   margin: 0;
+  font-family: "Poppins", sans-serif;
 `;
 
 const InnerCarousel = styled.div`
@@ -94,7 +95,7 @@ const InnerCarousel = styled.div`
     height: 100%;
     display: grid;
     place-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+
     text-align: justify;
     text-align-last: center;
   }
@@ -103,6 +104,7 @@ const InnerCarousel = styled.div`
 const Title = styled.h1`
   font-size: 5rem;
   border-radius: 9px;
+  font-family: "Poppins", sans-serif;
   z-index: 1;
   color: #122620;
   background-color: rgba(white, 0.2);

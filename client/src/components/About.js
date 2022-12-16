@@ -10,11 +10,11 @@ const About = () => {
           <Title>Who is this for?</Title>
           <Description>
             {" "}
-            This is for the sewing lovers who don't know what to do with their
-            extra fabrics or scraps of fabrics and for those of us love working
-            with scraps of fabric.Let's not waste fabric and find new ways to
-            uses our materials. This market website is meant to be free and
-            please choose locations that you feel comfortable to meet.
+            This is for those who love to sew but don't know what to do with
+            their extra fabrics or scraps of fabrics and for those of us love
+            working with scraps of fabric.Let's not waste fabric and find new
+            ways to uses our materials. This market website is meant to be free
+            and please choose locations that you feel comfortable to meet.
           </Description>
         </Box>
         <FigureImg>
@@ -28,13 +28,10 @@ const About = () => {
 export default About;
 
 const TopDiv = styled.div`
-  /* background: #344557
-    url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
-    0 0 no-repeat; */
+  font-family: "Poppins", sans-serif;
   background-color: #122620;
   background-size: cover;
   z-index: -1;
-  /* height: 100vh; */
   width: 100%;
   height: 100%;
   position: relative;

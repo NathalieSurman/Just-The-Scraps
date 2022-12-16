@@ -161,7 +161,7 @@ const Container = styled.div`
   padding: 0px;
   height: fit-content;
   display: flex;
-
+  font-family: "Poppins", sans-serif;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
@@ -202,8 +202,6 @@ const Subtile = styled.h4`
 `;
 
 const Buttons = styled.button`
-  /* position: relative; */
-  /* display: inline-block; */
   display: flex;
   cursor: pointer;
   outline: none;
@@ -238,7 +236,7 @@ const Buttons = styled.button`
     bottom: 0;
     background: #2c5b4c; //$dark-pink: #f9c4d2;
     border-radius: inherit;
-    /* box-shadow: 0 0 0 2px #3f836d, 0 0.625em 0 0 #387663; //$pink-shadow: #ffe3e2; */
+
     transform: translate3d(0, 0.75em, -1em);
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
       box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);

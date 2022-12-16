@@ -70,7 +70,7 @@ const Wrapper = styled.div`
   align-items: center;
   min-height: 100vh;
   background-image: url("/cover2.jpg");
-
+  font-family: "Poppins", sans-serif;
   background: cover;
 `;
 
