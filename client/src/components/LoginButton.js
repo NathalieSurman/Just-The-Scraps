@@ -20,9 +20,7 @@ const LoginButton = () => {
 export default LoginButton;
 
 const Container = styled.div`
-  /* background-image: url("/loginpage.jpg");
-  background-size: cover;
-  background-repeat: no-repeat; */
+  font-family: "Poppins", sans-serif;
   z-index: -1;
   width: 100vw;
   height: 100vh;
@@ -30,11 +28,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #122620;
-
-  //NEW
-  /* background: #344557
-    url(https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?fit=crop&fm=jpg&h=700&q=75&w=1050)
-    0 0 no-repeat; */
   background-size: cover;
   &:after {
     content: "";
@@ -42,18 +35,6 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  display: block;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  color: #d6ad60;
-  /* text-shadow: -15px 5px 20px #f4ca7c; */
-  transition: all 0.5s ease-in-out;
-
-  :hover {
-    text-shadow: -16px 5px 15px #f2d6d6;
-  }
-`;
 const DivButton = styled.div`
   display: flex;
   flex-direction: column;

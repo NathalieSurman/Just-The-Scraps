@@ -15,6 +15,7 @@ const LogoutButton = () => {
 export default LogoutButton;
 
 const Button = styled.button`
+  font-family: "Poppins", sans-serif;
   background-color: #122620;
   border: solid #d6ad60;
   border-radius: 3px;

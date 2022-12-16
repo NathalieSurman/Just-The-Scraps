@@ -36,6 +36,7 @@ const Container = styled.div`
   margin: 0;
   height: 60px;
   background-color: #122620;
+  font-family: "Poppins", sans-serif;
 `;
 
 const Wrapper = styled.div`

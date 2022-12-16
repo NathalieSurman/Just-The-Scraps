@@ -144,10 +144,10 @@ const PopUp = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  /* background-color: aqua; */
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Poppins", sans-serif;
 `;
 
 const InnerPop = styled.div`
@@ -158,13 +158,7 @@ const InnerPop = styled.div`
   background-color: #122620;
   text-align: center;
   border: #d6ad60 solid 1.5px;
-
-  /* max-width: 1140px;
-  min-height: 100vh; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; */
+  font-family: "Poppins", sans-serif;
 `;
 
 const CloseBtn = styled.button`
@@ -175,6 +169,7 @@ const CloseBtn = styled.button`
   color: #d6ad60;
   border: #d6ad60 solid 1px;
   text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
   padding: 2px 8px;
   &:hover {
     background-color: #d6ad60;
@@ -184,11 +179,6 @@ const CloseBtn = styled.button`
 `;
 
 const ProductForm = styled.form`
-  /* margin-left: 30%; */
-  //#122620; //#d6ad60
-  /* padding: 10px 20px;
-  background: #f4f7f8;
-  margin: 10px auto; */
   background-color: #122620;
   padding: 10px 20px;
 
@@ -235,16 +225,19 @@ const Label = styled.label`
   display: block;
   margin-bottom: 8px;
   color: #d6ad60;
+  font-family: "Poppins", sans-serif;
 `;
 const Title = styled.h2`
   text-align: center;
   font-size: 1.4em;
   margin-bottom: 10px;
   color: #d6ad60;
+  font-family: "Poppins", sans-serif;
 `;
 
 const Subtitle = styled.h3`
   color: #d6ad60;
+  font-family: "Poppins", sans-serif;
 `;
 const Select = styled.select`
   background: rgba(254, 168, 21, 0.67);
@@ -260,7 +253,7 @@ const Select = styled.select`
   -moz-box-sizing: border-box;
   background-color: #122620;
   color: #d6ad60;
-
+  font-family: "Poppins", sans-serif;
   -webkit-box-shadow: 0 1px 0 rgba(253, 224, 35, 0.775) inset;
   box-shadow: 0 1px 0 rgba(247, 168, 32, 0.642) inset;
   margin-bottom: 30px;
@@ -270,7 +263,7 @@ const Select = styled.select`
 
 const Button = styled.button`
   position: relative;
-  /* display: block; */
+  font-family: "Poppins", sans-serif;
   padding: 19px 39px 18px 39px;
   color: #d6ad60;
   margin: 0 auto;
