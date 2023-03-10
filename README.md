@@ -1,7 +1,7 @@
 # Just-The-Scraps
 
-Just the Scraps is a free market place for fashion designers or people who love to sew but don't know what to do with
-their extra fabrics to donate these fabrics back to the community. This website allows you to post your fabrics, rolls of fabric, or scraps of fabric in hopes that others can make something out of nothing.
+Just the Scraps is a free marketplace for fashion designers or people who love to sew but need help with what to do with their extra fabrics to donate them back to the community. 
+This website allows you to post your fabrics, rolls of cloth, or fabric scraps, hoping others can make something out of nothing.
 
 ## This is the Login page
 
